@@ -1,0 +1,170 @@
+
+<div class="contenedor-principal">
+  <div class="formulario-comisiones">
+    <form
+      [formGroup]="formulario"
+      class="contenedor-form"
+    >
+
+
+      <div class="contenedores-form contenedor-inputs">
+        <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+          <select
+            class="form-select custom-select-style"
+            id="floatingSelect12"
+            (change)="GeneracionSeleccionado($event)"
+          >
+            <option selected>SELECCIONA UNA GENERACION</option>
+            <option
+              *ngFor="let generaciones of generaciones; let i = index"
+              value="{{generaciones.id }}"
+
+
+            >
+             {{generaciones.nombre }}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA UNA GENERACION</label>
+        </div>
+        <br>
+        <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+          <select
+            class="form-select custom-select-style"
+            id="floatingSelect12"
+            (change)="periodoSeleccionado($event)"
+          >
+          <option selected>SELECCIONA UN PERIODO</option>
+
+            <option
+              *ngFor="let periodo of fechas_sesion_periodo; let i = index"
+              value="{{periodo.id}}"
+            >
+             PERIODO {{periodo.id_periodo }}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA UN PERIODO</label>
+        </div>
+        <br>
+      </div>
+
+
+      <div class="contenedor-fechas-principal" *ngIf="mostrarPeriodos">
+        <div class="contenedor-fechas-periodos"  style=" margin-left: 10px; margin-right: 10px;">
+          <!-- <div class="contenedores-pares">
+            <label class="form-label label-verde">PERIODO: {{NombreperiodoSeleccionado}} - GENERACION: {{this.nombreGeneracion}}</label>
+          </div> -->
+
+          <div class="contenedores-pares efecto-hover">
+            <div class="contenedor-flex-column" style="margin: 0 !important;">
+              <label class="form-label label-verde" >PRIMERA SESION</label>
+            </div>
+            <div class="contenedor-flex-column">
+              <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="floatingInput4"
+                  placeholder="Ej. Pedroza"
+                  formControlName="fechaInicialPrimeraSesion"
+
+                />
+                <label for="floatingInput4">Fecha Incial:</label>
+              </div>
+              <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="floatingInput5"
+                  placeholder="Ej. LUHERXXXXX"
+                  formControlName="fechaFinalPrimeraSesion"
+
+                />
+                <label for="floatingInput5">Fecha Final:</label>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="contenedores-pares efecto-hover">
+            <div class="contenedor-flex-column" style="margin: 0 !important;">
+              <label class="form-label label-verde" >SEGUNDA SESION</label>
+            </div>
+            <div class="contenedor-flex-column">
+              <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="floatingInput4"
+                  placeholder="Ej. Pedroza"
+                  formControlName="fechaInicialSegundaSesion"
+
+                />
+                <label for="floatingInput4">Fecha Incial:</label>
+              </div>
+              <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="floatingInput5"
+                  placeholder="Ej. LUHERXXXXX"
+                  formControlName="fechaFinalSegundaSesion"
+
+                />
+                <label for="floatingInput5">Fecha Final:</label>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="contenedores-pares efecto-hover">
+            <div class="contenedor-flex-column" style="margin: 0 !important;">
+              <label class="form-label label-verde" >TERCERA SESION</label>
+            </div>
+            <div class="contenedor-flex-column">
+              <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="floatingInput4"
+                  placeholder="Ej. Pedroza"
+                  formControlName="fechaInicialTerceraSesion"
+
+                />
+                <label for="floatingInput4">Fecha Incial:</label>
+              </div>
+              <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="floatingInput5"
+                  placeholder="Ej. LUHERXXXXX"
+                  formControlName="fechaFinalTerceraSesion"
+
+                />
+                <label for="floatingInput5">Fecha Final:</label>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+
+        <div class="contenedor-flex-column">
+          <div class="">
+            <button class="btn btn-ediles" style="padding: 10px;" (click)="cargarGeneracion()"> Actualizar Fechas</button>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ================================================================================ -->
+      <!-- ================================================================================ -->
+      <!-- <div class="contenedor-botones">
+        <button class="btn btn-ediles" (click)="cargarGeneracion()">AGREGAR GENERACION</button>
+
+      </div> -->
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,258 @@
+<div class="contenedor-principal">
+  <div class="contenido-modal">
+    <div class="container-titulo-modal">
+      <h1>TERCER INFORME - {{nombre_alumno}}</h1>
+
+    </div>
+    <div class="container">
+
+      <form [formGroup]="formulario">
+        <div class="contenedores-pares ">
+          <div class="mb-3" class="item-contenedor-par contenedor-individual-titulo">
+            <label for="pregunta1" class="form-label"
+              >¿El alumno asistio ala sesion?</label
+            >
+            <select class="form-select" id="pregunta1"  formControlName="primera" (change)="activarInputs($event)">
+              <!-- si asistio , numero de sesiones, horas de atencion en automatico. -->
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="SI">Sí</option>
+              <option value="NO">No</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div *ngIf="mostrar" class="contenedores-pares ">
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta1" class="form-label"
+              >1. NUMERO DE SESIONES</label
+            >
+            <select class="form-select" id="pregunta1" formControlName="segunda">
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+
+            </select>
+          </div>
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+              >2. HORAS DE ATENCION</label
+            >
+            <select class="form-select" id="pregunta2" formControlName="tercera" >
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+            </select>
+          </div>
+        </div>
+
+        <div *ngIf="mostrar" class="contenedores-pares">
+
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+              >3. ACTIVIDAD TUTORAL</label
+            >
+            <select class="form-select" id="pregunta2" formControlName="cuarta">
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="CANALIZACION">CANALIZACION</option>
+              <option value="ASESORIA_AC">ASESORIA AC.</option>
+              <option value="CONSEJERIA">CONSEJERIA</option>
+              <option value="TUTORIA_INFORM">TUTORIA INFORM</option>
+              <option value="CURSO">CURSO, TALLER, CONFERENCIA</option>
+              <option value="PRODUCTO_ESCRITO">PRODUCTO ESCRITO</option>
+              <option value="CONVIVENCIA">CONVIVENCIA PADRES DE FAMILIA</option>
+              <option value="NINGUNA">NINGUNA</option>
+            </select>
+          </div>
+
+
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta1" class="form-label"
+              >4. MODALIDAD</label
+            >
+            <select class="form-select" id="pregunta1"  formControlName="quinta">
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+
+              <option value="G">GRUPAL</option>
+              <option value="I">INDIVIDUAL</option>
+              <option value="A">AMBAS</option>
+
+
+            </select>
+          </div>
+        </div>
+
+
+        <div *ngIf="mostrar" class="contenedores-pares">
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+            >5. SITUACION PROBLEMATICA</label
+          >
+          <select class="form-select" id="pregunta2" formControlName="sexta">
+            <option value="" selected >
+              Selecciona una respuesta
+            </option>
+            <option value="N">NINGUNO</option>
+            <option value="I">INTEGRACION</option>
+            <option value="S">SOCIAL</option>
+            <option value="F">FAMILIAR</option>
+            <option value="E">ECONOMICO</option>
+            <option value="A">ASESORIA</option>
+            <option value="R">REZAGO</option>
+            <option value="P">PERSONAL</option>
+            <option value="DP">DESERCION POTENCIAL</option>
+            <option value="B">BAJA</option>
+
+          </select>
+          </div>
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta1" class="form-label"
+            >6. CANALIZACION</label
+          >
+          <select class="form-select" id="pregunta1" formControlName="septima" (change)="activaInputCanalizacion($event)" >
+            <option value="" selected >
+              Selecciona una respuesta
+            </option>
+            <option value="SI">SI</option>
+            <option value="NO">NO</option>
+
+
+          </select>
+          </div>
+        </div>
+
+        <div  *ngIf="mostrar" class="contenedores-pares">
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta1" class="form-label"
+              >7. CANALIZACION</label
+            >
+            <select class="form-select" id="pregunta1" formControlName="octava" (change)="activarCanalizacion($event)">
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="SI">SI</option>
+              <option value="NO">NO</option>
+
+
+            </select>
+          </div>
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+              >8. TIPO CANALIZACION</label
+            >
+            <select class="form-select" id="pregunta1" formControlName="decima" (change)="seleccionCanalizacion($event)" >
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="FEDERAL">SERVICIOS PSICOLOGICOS</option>
+              <option value="SERVICIO_SALUD">SERVICIO DE SALUD</option>
+              <option value="ASESORIA_ACADEMICA">ASESORIA ACADEMICA</option>
+              <option value="BECA">BECA</option>
+
+            </select>
+
+          </div>
+        </div>
+
+        <div *ngIf="mostrar" class="contenedores-pares">
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+            >9. BECA CANALIZACION</label
+          >
+          <select class="form-select" id="pregunta1" formControlName="onceava" >
+            <option value="" selected >
+              Selecciona una respuesta
+            </option>
+            <option value="FEDERAL">FEDERAL</option>
+            <option value="ALIMENTACION">ALIMENTACION</option>
+            <option value="SOCIOECONOMICA">SOCIOECONOMICA</option>
+            <option value="ESFUERZO_ACADEMICO">ESFUERZO ACADEMICO</option>
+            <option value="EXCELENCIA_ACADEMICA">EXCELENCIA ACADEMICA</option>
+            <option value="OTRA">OTRA</option>
+          </select>
+          </div>
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+              >10. ATENCION DE CANALIZACION</label
+            >
+            <select class="form-select" id="pregunta1" formControlName="doceava" >
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="SI">SI</option>
+              <option value="NO">NO</option>
+            </select>
+          </div>
+        </div>
+
+        <div *ngIf="mostrar"  class="contenedores-pares">
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+              >11. OBSERVACIONES</label
+            >
+            <input type="text" class="form-control" name="" id="" formControlName="novena" placeholder="Ingresa observaciones porfavor.">
+
+          </div>
+        </div>
+        <!--  -->
+
+        <!-- <div *ngIf="mostrar"  class="contenedores-pares">
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+            >7. ATENDIDO</label
+          >
+          <select class="form-select" id="pregunta2" formControlName="octava">
+            <option value="" selected >
+              Selecciona una respuesta
+            </option>
+            <option value="SI">SI</option>
+            <option value="NO">NO</option>
+            <option value="NA">NO APLICA</option>
+
+
+          </select>
+          </div>
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta1" class="form-label"
+            >8. OBSERVACIONES</label
+          >
+          <select class="form-select" id="pregunta1" formControlName="novena" >
+            <option value="" selected >
+              Selecciona una respuesta
+            </option>
+            <option value="SI">SI</option>
+            <option value="NO">NO</option>
+
+
+          </select>
+          </div>
+        </div> -->
+
+        <!--  -->
+
+
+
+
+        <div class="contenedores-pares">
+          <button type="submit" class="btn btn-ediles" style="margin-top: 30px;" (click)="enviarInforme()">Enviar</button>
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+

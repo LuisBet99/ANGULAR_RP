@@ -1,0 +1,208 @@
+<div class="loading-class" *ngIf="loadinges === 'true'">
+  <mat-progress-spinner
+        class="loading-class-item"
+        [color]="colorSpinner"
+        [mode]="'indeterminate'"
+        [value]="0">
+    </mat-progress-spinner>
+</div>
+
+<mat-drawer-container class="contenedor-sidenav" autosize>
+  <mat-drawer #drawer class="sidenav-2" mode="push">
+    <div class="header-content-2">
+      <div class="item-header item-header-titulo item-route-titulo">
+        <p class="titulo-route">{{nombreCompleto | uppercase}}</p>
+      </div>
+      <div class="item-header item-header-btn item-route-btn">
+
+        <button type="button" mat-button (click)="drawer.toggle()">
+          <svg xmlns="http://www.w3.org/2000/svg" style="color: white; font-size: 28px; font-weight: bold"
+          width="25" height="25" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+          </svg>
+
+        </button>
+      </div>
+    </div>
+
+    <div class="main-content-2"  >
+      <div class="accordion accordion-flush" id="accordionFlushExample" style="margin-top: 1px;">
+
+
+
+
+        <!-- GENERACIONES -->
+        <div class="accordion-item" *ngIf=" rol_institucional || rol_academico">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+              GENERACIONES
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <div class="contenedor-ruta" routerLink="ver-generaciones" >
+                <p class="p-titulo-btn">VER GENERACIONES</p>
+              </div>
+              <div class="contenedor-ruta" routerLink="cargar-generaciones">
+                <p class="p-titulo-btn">AGREGAR GENERACIONES</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+       <!-- ALUMNOS -->
+       <div class="accordion-item" *ngIf=" rol_institucional ">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionAlumnos" aria-expanded="true" aria-controls="accordionAlumnos">
+            ALUMNOS
+          </button>
+        </h2>
+        <div id="accordionAlumnos" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <div class="contenedor-ruta" routerLink="cargar-alumnos">
+              <p class="p-titulo-btn">CARGAR ALUMNOS</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <!-- DOCENTES -->
+      <div class="accordion-item" *ngIf=" rol_institucional || rol_academico">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionDocentes" aria-expanded="true" aria-controls="accordionDocentes">
+            DOCENTES
+          </button>
+        </h2>
+        <div id="accordionDocentes" class="accordion-collapse collapse" data-bs-parent="#accordionCarreras #accordionAlumnos #flush-collapseOne ">
+          <div class="accordion-body">
+            <div class="contenedor-ruta" routerLink="cargar-docentes">
+              <p class="p-titulo-btn">CARGAR DOCENTES</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <!-- TUTORES -->
+      <div class="accordion-item" *ngIf=" rol_institucional">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionTutores" aria-expanded="true" aria-controls="accordionTutores">
+            TUTORES
+          </button>
+        </h2>
+        <div id="accordionTutores" class="accordion-collapse collapse" data-bs-parent="#accordionCarreras #accordionAlumnos #flush-collapseOne ">
+          <div class="accordion-body">
+            <div class="contenedor-ruta" routerLink="cargar-tutores">
+              <p class="p-titulo-btn">CARGAR TUTORES</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="accordion-item" *ngIf=" rol_institucional ">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordionReportes" aria-expanded="true" aria-controls="accordionReportes">
+            REPORTES
+          </button>
+        </h2>
+        <div id="accordionReportes" class="accordion-collapse collapse" data-bs-parent="#accordionCarreras #accordionAlumnos #flush-collapseOne ">
+          <div class="accordion-body">
+            <!-- <div class="contenedor-ruta" routerLink="ver-tutores" >
+              <p class="p-titulo-btn">VER TUTORES</p>
+            </div> -->
+            <div class="contenedor-ruta" routerLink="reporte-semestral">
+              <p class="p-titulo-btn">REPORTES SEMESTRALES</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <div class="accordion-item" *ngIf=" rol_institucional || rol_academico">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+            AVISOS
+          </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+          <div class="accordion-body">
+            <div class="contenedor-ruta" routerLink="ver-avisos" >
+              <p class="p-titulo-btn">VER/EDITAR AVISOS</p>
+            </div>
+            <!-- <div class="contenedor-ruta" routerLink="cargar-generaciones">
+              <p class="p-titulo-btn">AGREGAR GENERACIONES</p>
+            </div> -->
+
+          </div>
+        </div>
+      </div>
+
+
+      <div class="accordion-item">
+        <h2 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" (click)="salir()">
+            SALIR
+          </button>
+        </h2>
+      </div>
+      </div>
+
+
+    </div>
+
+    <div class="footer-sidenav-2">
+      <!-- <img src="./../../assets/img/footer/logo_apd.png" alt="" class="img-footer-sidenav-2"> -->
+    </div>
+  </mat-drawer>
+  <div
+    class="header-content"
+    style="box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.2)"
+  >
+    <div class="item-header item-header-btn">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <svg xmlns="http://www.w3.org/2000/svg" style="color: white; font-size: 28px; font-weight: bold" width="25" height="25" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+        <!-- <i
+          class="bi bi-list"
+
+        ></i> -->
+      </button>
+    </div>
+    <div class="item-header item-header-titulo">
+      <!-- <img src="./../../assets/icon/SME_1.png" alt="" width="80px" height="80px"> -->
+      <h2 class="titulo-header-principal">{{titulo}}</h2>
+    </div>
+  </div>
+  <div class="sidenav-content " style="    background-color: rgb(255, 255, 255);
+  ">
+    <div class="main-content " >
+      <div class="router animate__animated animate__fadeInDown">
+
+        <router-outlet style="z-index: 1;" (activate)="recibirTitulo($event)" (activate)="activarLoading($event)" ></router-outlet>
+      </div>
+    </div>
+
+  </div>
+  <!-- <div class="footer-content">
+    <app-footer></app-footer>
+  </div> -->
+</mat-drawer-container>
+<div class="footer-content">
+  <!-- <app-footer style="width: 100%;"></app-footer> -->
+</div>

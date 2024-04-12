@@ -1,0 +1,74 @@
+<div class="loading-class" *ngIf="loadinges === 'true'">
+  <mat-progress-spinner
+        class="loading-class-item"
+        [color]="colorSpinner"
+        [mode]="'indeterminate'"
+        [value]="0">
+    </mat-progress-spinner>
+</div>
+
+<mat-drawer-container class="contenedor-sidenav" autosize>
+  <mat-drawer #drawer class="sidenav-2" mode="push">
+    <div class="header-content-2">
+      <div class="item-header item-header-titulo item-route-titulo">
+        <p class="titulo-route">{{titutloEstructura | uppercase}}</p>
+      </div>
+      <div class="item-header item-header-btn item-route-btn">
+        <button type="button" mat-button (click)="drawer.toggle()">
+          <i
+            class="bi bi-arrow-right"
+            style="color: white; font-size: 28px; font-weight: bold"
+          ></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="main-content-2"  >
+
+
+      <div class="contenedor-ruta" (click)="salir()">
+        <p class="p-titulo-btn">SALIR</p>
+        <p class="icon-container">
+          <i class="fa-solid fa-arrow-left-from-line fa-xl icono-btn"></i>
+          <!-- <i class="fa-solid fa-shield-virus fa-xl icono-btn"></i> -->
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-sidenav-2">
+      <!-- <img src="./../../assets/img/footer/logo_apd.png" alt="" class="img-footer-sidenav-2"> -->
+    </div>
+  </mat-drawer>
+  <div
+    class="header-content"
+    style="box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.2)"
+  >
+    <div class="item-header item-header-btn">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <i
+          class="bi bi-list"
+          style="color: white; font-size: 28px; font-weight: bold"
+        ></i>
+      </button>
+    </div>
+    <div class="item-header item-header-titulo">
+      <!-- <img src="./../../assets/icon/SME_1.png" alt="" width="80px" height="80px"> -->
+      <h2 class="titulo-header-principal">{{titulo}}</h2>
+    </div>
+  </div>
+  <div class="sidenav-content " >
+    <div class="main-content " >
+      <div class="router animate__animated animate__fadeInDown">
+
+        <router-outlet style="z-index: 1;" (activate)="recibirTitulo($event)" (activate)="activarLoading($event)" ></router-outlet>
+      </div>
+    </div>
+
+  </div>
+  <!-- <div class="footer-content">
+    <app-footer></app-footer>
+  </div> -->
+</mat-drawer-container>
+<div class="footer-content">
+  <!-- <app-footer style="width: 100%;"></app-footer> -->
+</div>

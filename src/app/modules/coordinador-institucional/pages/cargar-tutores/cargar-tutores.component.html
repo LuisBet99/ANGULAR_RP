@@ -1,0 +1,79 @@
+
+<div class="contenedor-principal">
+  <div class="contenedor-titulo-principal">
+    <div class="titulo-documentos">
+      <!-- <h2 class="p-titulo-historico" style="color: rgb(128, 0, 0);"><strong>CARGAR GENERACIONAL</strong></h2> -->
+    </div>
+  </div>
+  <div class="formulario-comisiones">
+    <form
+      [formGroup]="formulario"
+      class="contenedor-form">
+
+      <div class="contenedores-form contenedor-inputs">
+        <div class="inputs-box">
+
+          <div class="form-group-2">
+            <label for="exampleFormControlSelect1"
+              class="form-label label-verde">CARRERA :</label>
+            <div class="container-input-flot">
+              <select
+                class="form-select custom-select-style"
+                id="presidente"
+                (change)="carreraSeleccionada($event)"
+                formControlName="carrera">
+                <option selected >SELECCIONA UNA CARRERA</option>
+                <option
+                  *ngFor="let carrera of lista_carreras"
+                  value="{{carrera.id}}"
+                  class="form-select"> {{carrera.nombre}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class=" inputs-box contenedores-tablas-docentes">
+          <div class="inputs-box">
+            <div class=" form-group-full">
+              <label for="exampleFormControlSelect1"
+                class="form-label label-verde">DOCENTES TUTORES:</label>
+              <ul class="list-group" style="width: 100%; height: 250px !important; overflow-y: auto;">
+                <li class="list-group-item list-group-docentes" *ngFor="let docente of lista_docentes_tutores" >
+                  <div class="contenedor-nombre-profesor">
+                    <p>{{docente.nombre}} {{docente.apellido_paterno}} {{docente.apellido_materno}}</p>
+                  </div>
+                  <div class="contenedor-checkbox">
+                    <!-- <input type="checkbox" class="form-check-input" value="{{docente.id}}"> -->
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="inputs-box ">
+            <div class=" form-group-full">
+              <label for="exampleFormControlSelect1"
+                class="form-label label-verde">DOCENTES NO TUTORES:</label>
+              <ul class="list-group" style="width: 100%; height: 250px !important; overflow-y: auto;">
+                <li class="list-group-item list-group-docentes" *ngFor="let docente of lista_docentes_no_tutores" >
+                  <div class="contenedor-nombre-profesor">
+                    <p>{{docente.nombre}} {{docente.apellido_paterno}} {{docente.apellido_materno}}</p>
+                  </div>
+                  <div class="contenedor-checkbox">
+                    <input type="radio" class="form-check-input" value="{{docente.id}}" (click)="docenteSeleccionado(docente,docente.id,id_carrera_seleccionada)">
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================================================================================ -->
+      <!-- ================================================================================ -->
+    </form>
+  </div>
+</div>

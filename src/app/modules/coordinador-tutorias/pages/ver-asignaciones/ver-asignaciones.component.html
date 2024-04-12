@@ -1,0 +1,120 @@
+<div class="contenedor-principal">
+  <div class="formulario-comisiones">
+    <form [formGroup]="formulario" class="contenedor-form">
+      <div class="contenedores-form contenedor-inputs">
+        <div class="form-floating" style="margin: 0px 10px 20px 10px">
+          <select
+            class="form-select"
+            id="floatingSelect12"
+            (change)="GeneracionSeleccionado($event)"
+          >
+            <option selected>SELECCIONA UNA GENERACION</option>
+            <option
+              *ngFor="let generaciones of generaciones; let i = index"
+              value="{{ generaciones.id }}"
+            >
+              {{ generaciones.nombre }}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA UNA GENERACION</label>
+        </div>
+        <br />
+
+        <!-- <div class="form-floating" style="margin: 0px 10px 20px 10px">
+          <select
+            class="form-select"
+            id="floatingSelect12"
+            (change)="carreraSeleccionada($event)"
+          >
+            <option selected>SELECCIONA CARRERA</option>
+
+            <option
+              *ngFor="let carrera of listaCarreras; let i = index"
+              value="{{ carrera.id }}"
+            >
+              {{ carrera.nombre | uppercase }}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA CARRERA</label>
+        </div>
+        <br> -->
+
+        <div class="form-floating" style="margin: 0px 10px 20px 10px" >
+          <button
+            class="btn btn-primary"
+            (click)="generarReporte()"
+            *ngIf="!mostrarPeriodos"
+            style="padding: 15px"
+          >
+            VER ASIGNACIONES
+          </button>
+          <button
+            class="btn btn-danger"
+            (click)="downloadDivAsPDF()"
+            style="padding: 10px"
+            *ngIf="mostrarPeriodos"
+          >
+           DESCARGAR REPORTE
+          </button>
+        </div>
+      </div>
+
+      <div class="container-tutorados" style="background-color: white; margin-bottom: 30px;" *ngIf="mostrarPeriodos">
+        <!-- <div id="myChart" width="400" height="400"></div> -->
+        <!-- <br>
+        <div class="titulo">
+          <h2>ASIGNACION DE ALUMNOS GENERACION: {{ nombre_generacion.nombre}}</h2>
+        </div>
+        <br> -->
+
+        <div *ngFor="let reporte of dataReportes | keyvalue">
+          <table *ngIf="reporte.value.tutorados.length > 0"  class="tabla-reporte" style="margin-bottom: 50px; width: 100%; border-collapse: collapse; border-spacing: 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <thead>
+              <tr>
+                <th class="class-td" colspan="2" style="color: brown;" >TUTOR: {{ reporte.value.docente.nombre }} {{ reporte.value.docente.apellido_paterno }} {{ reporte.value.docente.apellido_materno }} </th>
+                <th class="class-td" colspan="10">LISTA DE TUTORADOS</th>
+
+              </tr>
+            </thead>
+            <tbody>
+
+              <ng-container >
+                <tr>
+                  <td class="class-td " style="font-weight: bold; text-align: left !important;">NOMBRE</td>
+                  <td class="class-td " style="font-weight: bold; text-align: left !important; ">APELLIDO PATERNO</td>
+                  <td class="class-td " style="font-weight: bold; text-align: left !important;">APELLIDO MATERNO</td>
+                  <td class="class-td " style="font-weight: bold;">NUMERO DE CONTROL</td>
+                  <td class="class-td " style="font-weight: bold;">SEMESTRE</td>
+                  <td class="class-td " style="font-weight: bold;">ESTATUS</td>
+                </tr>
+                <tr *ngFor="let tutorado of reporte.value.tutorados">
+                  <td class="class-td " style="text-align: left !important;">{{ tutorado.nombre }}</td>
+                  <td class="class-td "  style="text-align: left !important;"> {{ tutorado.apellido_paterno }}</td>
+                  <td class="class-td " style="text-align: left !important;" > {{ tutorado.apellido_materno }}</td>
+                  <td class="class-td " > {{ tutorado.numero_checador }}</td>
+                  <td class="class-td " > {{ tutorado.semestre }}</td>
+                  <td class="class-td " > {{ tutorado.estatus_actual }}</td>
+
+                </tr>
+
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+
+
+
+
+        </div>
+
+
+      <!-- ================================================================================ -->
+      <!-- ================================================================================ -->
+      <!-- <div class="contenedor-botones">
+        <button class="btn btn-ediles" (click)="cargarGeneracion()">AGREGAR GENERACION</button>
+
+      </div> -->
+    </form>
+  </div>
+</div>
+

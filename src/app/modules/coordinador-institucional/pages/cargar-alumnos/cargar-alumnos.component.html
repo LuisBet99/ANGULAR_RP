@@ -1,0 +1,55 @@
+
+<div class="contenedor-principal">
+  <div class="contenedor-titulo-principal">
+    <div class="titulo-documentos">
+      <!-- <h2 class="p-titulo-historico" style="color: rgb(128, 0, 0);"><strong>CARGAR GENERACIONAL</strong></h2> -->
+    </div>
+  </div>
+  <div class="formulario-comisiones">
+    <form
+      [formGroup]="formulario"
+      class="contenedor-form efecto-hover-2">
+
+      <div class="contenedores-form contenedor-inputs">
+
+        <div class="inputs-box box-ediles">
+
+          <div class="form-group-2">
+            <label for class="label-verde">SELECCIONA ARCHIVO: </label>
+            <input type="file" id accept=".xlsx"
+              (change)="archivoSeleccionado($event)"
+              class="input-date-sesiones form-control"
+              formControlName="dictamen">
+          </div>
+          <div class=" form-group-2 form-floating"  >
+            <select
+              class="form-select"
+              id="floatingSelect12"
+              (change)="GeneracionSeleccionado($event)"
+
+            >
+              <option selected>SELECCIONA UNA GENERACION</option>
+              <option
+                *ngFor="let generaciones of generaciones; let i = index"
+                value="{{generaciones.id }}"
+
+
+              >
+               {{generaciones.nombre }}
+              </option>
+            </select>
+            <label for="floatingSelect12  label-verde">SELECCIONA UNA GENERACION</label>
+          </div>
+        </div>
+        <div class="contenedor-botones">
+          <button class="btn btn-ediles" (click)="this.convertExcelToJson(excelAlumnos);
+          " >CARGAR ALUMNOS</button>
+        </div>
+      </div>
+
+      <!-- ================================================================================ -->
+      <!-- ================================================================================ -->
+
+    </form>
+  </div>
+</div>

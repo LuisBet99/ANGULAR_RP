@@ -1,0 +1,145 @@
+
+<div class="loading-class" *ngIf="loadinges === 'true'">
+  <mat-progress-spinner
+        class="loading-class-item"
+        [color]="colorSpinner"
+        [mode]="'indeterminate'"
+        [value]="0">
+    </mat-progress-spinner>
+</div>
+<div class="contenedor-principal">
+  <div class="contenido-modal">
+    <div class="container-titulo-modal">
+      <h1>INFORME SEMESTRAL - {{nombre_alumno}}</h1>
+
+    </div>
+    <div class="container">
+
+      <form [formGroup]="formulario">
+        <!-- <div class="contenedores-pares ">
+          <div class="mb-3" class="item-contenedor-par contenedor-individual-titulo">
+            <label for="pregunta1" class="form-label"
+              >¿El alumno asistio ala sesion?</label
+            >
+            <select class="form-select" id="pregunta1"  formControlName="primera" (change)="activarInputs($event)">
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="SI">Sí</option>
+              <option value="NO">No</option>
+            </select>
+          </div>
+        </div> -->
+
+
+        <div *ngIf="mostrar" class="contenedores-pares">
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta1" class="form-label"
+              >1. NUMERO DE SESIONES TOTALES</label
+            >
+            <select class="form-select" id="pregunta1"  formControlName="segunda">
+              <option value="{{validacion.data.totalNumeroSesiones}}" selected >
+                {{validacion.data.totalNumeroSesiones}}
+              </option>
+
+            </select>
+          </div>
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+              >2. HORAS DE ATENCION TOTALES</label
+            >
+            <select class="form-select" id="pregunta1"  formControlName="tercera">
+              <option value="{{validacion.data.totalNumeroHorasAtencion}}"  selected >
+                {{validacion.data.totalNumeroHorasAtencion}}
+              </option>
+
+            </select>
+          </div>
+        </div>
+
+        <div *ngIf="mostrar" class="contenedores-pares">
+
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+              >3. PORCENTAJE ASISTENCIA TOTALES</label
+            >
+            <select class="form-select" id="pregunta1"  formControlName="cuarta">
+              <option value="{{validacion.data.porcentajeTotalNumeroAsistencias}}"  selected >
+                {{validacion.data.porcentajeTotalNumeroAsistencias}}%
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta1" class="form-label"
+              >4.CLAVE PREPONDERANTE (ACTIVIDAD TUTORIAL)</label
+            >
+            <select class="form-select" id="pregunta1"  formControlName="quinta">
+              <option value="">SELECCIONA UNA OPCION</option>
+              <option value="{{item.abreviacion}}" *ngFor="let item of listaActividadesTutorial" selected >
+                {{item.nombre}}
+              </option>
+
+            </select>
+
+          </div>
+        </div>
+
+
+        <div  *ngIf="mostrar" class="contenedores-pares">
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+            >5.CLAVE PREPONDERANTE (SITUACION PROBLEMATICA)</label
+          >
+          <select class="form-select" id="pregunta1"  formControlName="sexta">
+            <option value="">SELECCIONA UNA OPCION</option>
+
+            <option value="{{item.abreviacion}}" *ngFor="let item of listaSituacionesProblematicas" selected >
+              {{item.nombre}}
+            </option>
+          </select>
+          </div>
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta1" class="form-label"
+            >6. LOGROS ALCANZADOS POR EL TUTORADO</label
+          >
+          <select class="form-select" id="pregunta1"  formControlName="septima">
+            <option value="">SELECCIONA UNA OPCION</option>
+
+            <option value="{{item.abreviacion}}" *ngFor="let item of listaLogros" selected >
+              {{item.nombre}}
+            </option>
+          </select>
+          </div>
+        </div>
+
+
+        <!--  -->
+        <div  *ngIf="mostrar" class="contenedores-pares">
+
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+              >7. OBSERVACIONES</label
+            >
+            <input type="text" class="form-control" placeholder="Ingresa las bservaciones finales..." name="" id="" formControlName="octava">
+
+
+
+          </div>
+
+        </div>
+
+
+
+        <div class="contenedores-pares">
+          <button type="submit" class="btn btn-ediles" style="margin-top: 30px;" (click)="enviarInforme()">Enviar</button>
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

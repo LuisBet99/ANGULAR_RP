@@ -1,0 +1,93 @@
+
+<div class="contenedor-principal">
+  <div class="formulario-comisiones">
+    <form
+      [formGroup]="formulario"
+      class="contenedor-form"
+    >
+
+
+      <div class="contenedores-form contenedor-inputs">
+        <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+          <select
+            class="form-select"
+            id="floatingSelect12"
+            (change)="GeneracionSeleccionado($event)"
+
+          >
+            <option selected>SELECCIONA UNA GENERACION</option>
+            <option
+              *ngFor="let generaciones of generaciones; let i = index"
+              value="{{generaciones.id  }}"
+
+
+            >
+             {{generaciones.nombre }}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA UNA GENERACION</label>
+        </div>
+        <br>
+        <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+          <select
+            class="form-select"
+            id="floatingSelect12"
+          >
+
+            <option
+              *ngFor="let carrera of carreras; let i = index"
+              [value]="carrera.id"
+              [selected]="carrera.id === IdcarreraUsuario"
+              [disabled]="carrera.id !== carreraSeleccionada"
+
+
+            >
+            {{carrera.nombre | uppercase}}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA UNA CARRERA</label>
+        </div>
+        <br>
+
+        <div class="contenedor-fechas-principal" *ngIf="mostrarPeriodos">
+          <div class="container mt-5">
+            <div class="container-titulo" style="display: flex; justify-content: center; align-items: center; flex-direction: row; width: 100%;">
+              <h2>ASIGNACION DE ALUMNOS</h2>
+
+            </div>
+            <div class="container-btn-asignaciones" style="display: flex; justify-content: space-around; align-items: center; flex-direction: row; width: 100%;">
+              <button class="btn btn-ediles mt-3" (click)="asignarAlumnos()">Asignar Alumnos</button>
+              <button class="btn btn-ediles mt-3" (click)="generarObjetosDocentesAlumnos()" *ngIf="mostrar_btn_guardar">Guardar Asignacion</button>
+            </div>
+
+
+            <div class="row mt-3">
+              <!-- Iterar a través de las asignaciones y mostrar docentes con alumnos -->
+              <div *ngFor="let docente of lista_docentes" class="col-md-6 mt-3">
+                <div class="card">
+                  <div class="card-header" style="font-weight: bold;">
+                    <input type="checkbox" (change)="seleccionarDocente(docente)">
+                    DOCENTE: {{ docente.nombre }} {{ docente.apellido_paterno }} {{ docente.apellido_materno }}
+                  </div>
+                  <ul class="list-group list-group-flush">
+                    <li *ngFor="let alumno of asignaciones.get(docente)" class="list-group-item">
+                      {{ alumno.nombre }} {{ alumno.apellido_paterno }} {{ alumno.apellido_materno }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================================================ -->
+      <!-- ================================================================================ -->
+      <!-- <div class="contenedor-botones">
+        <button class="btn btn-ediles" (click)="cargarGeneracion()">AGREGAR GENERACION</button>
+
+      </div> -->
+    </form>
+  </div>
+</div>
+

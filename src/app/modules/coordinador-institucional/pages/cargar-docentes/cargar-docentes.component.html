@@ -1,0 +1,39 @@
+
+<div class="contenedor-principal">
+  <div class="contenedor-titulo-principal">
+    <div class="titulo-documentos">
+      <!-- <h2 class="p-titulo-historico" style="color: rgb(128, 0, 0);"><strong>CARGAR GENERACIONAL</strong></h2> -->
+    </div>
+  </div>
+  <div class="formulario-comisiones">
+    <form
+      [formGroup]="formulario"
+      class="contenedor-form efecto-hover-2"
+    >
+
+
+      <div class="contenedores-form contenedor-inputs">
+
+        <div class="inputs-box box-ediles">
+
+          <div class="form-group-2">
+            <label for="" class="label-verde">ARCHIVO DOCENTES: </label>
+            <input type="file" id="" accept=".xlsx" (change)="archivoSeleccionado($event)"class="input-date-sesiones form-control" formControlName="dictamen">
+          </div>
+          <!-- <div class="form-group-2">
+            <label for="" class="label-verde">MINUTA: </label>
+            <input type="file" id="" accept="application/pdf" (change)="archivoSeleccionado($event,'acta')"class="input-date-sesiones form-control" formControlName="minuta">
+          </div> -->
+        </div>
+        <div class="contenedor-botones">
+          <button class="btn btn-ediles" (click)="this.convertExcelToJson(excelDocentes);
+          ">CARGAR DOCENTES</button>
+        </div>
+      </div>
+
+      <!-- ================================================================================ -->
+      <!-- ================================================================================ -->
+
+    </form>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+
+<div class="contenedor-principal">
+  <div class="contenedor-titulo-principal">
+    <div class="titulo-documentos">
+      <h2 class="p-titulo-historico" style="color: rgb(128, 0, 0);"><strong></strong></h2>
+    </div>
+  </div>
+  <div class="formulario-comisiones">
+    <form
+      [formGroup]="formulario"
+      class="contenedor-form efecto-hover-2"
+    >
+
+
+      <div class="contenedores-form contenedor-inputs">
+        <div class="inputs-box">
+          <div class="form-group-2">
+            <label for="nombre" class="form-label label-verde">NOMBRE GENERACION:</label>
+            <br>
+            <input
+              type="text"
+              class="form-control custom-select-style"
+              placeholder="EJ: 2022-2024 "
+              aria-label="nombre-sesion"
+              formControlName="nombreGeneracion"
+              (input)="
+                convertirMayusculas(formulario.controls.nombreGeneracion)
+              "
+            />
+          </div>
+          <!-- <div class="form-group-2">
+            <label for="nombre" class="form-label label-verde">FECHA SESION:</label>
+            <input
+              type="date"
+              id="fecha"
+              class="form-control"
+
+              aria-label="fecha-sesion"
+              formControlName="fecha"
+              (input)="
+                convertirMayusculas(formulario.controls.nombresesion)
+              "
+            />
+          </div> -->
+
+        </div>
+        <br>
+        <label for="nombre" class="form-label label-verde">FECHA PRIMERA SESION  -  PRIMER PERIODO:</label>
+
+        <div class="contenedores-pares">
+
+          <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+            <input
+              type="date"
+              class="form-control custom-select-style"
+              id="floatingInput4"
+              formControlName="fechaInicial"
+              placeholder="dd/mm/yyyy"
+
+            />
+            <label for="floatingInput4">Fecha Incial:</label>
+          </div>
+          <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+            <input
+              type="date"
+              class="form-control custom-select-style"
+              id="floatingInput5"
+              placeholder="Ej. LUHERXXXXX"
+              formControlName="fechaFinal"
+
+            />
+            <label for="floatingInput5">Fecha Final:</label>
+          </div>
+        </div>
+
+
+        <div class="contenedor-botones">
+          <button class="btn btn-ediles" (click)="cargarGeneracion()">AGREGAR GENERACION</button>
+
+        </div>
+      </div>
+
+      <!-- ================================================================================ -->
+      <!-- ================================================================================ -->
+
+    </form>
+  </div>
+</div>

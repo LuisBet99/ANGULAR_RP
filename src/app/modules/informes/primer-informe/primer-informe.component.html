@@ -1,0 +1,202 @@
+<div class="loading-class" *ngIf="loadinges === 'true'">
+  <mat-progress-spinner
+        class="loading-class-item"
+        [color]="colorSpinner"
+        [mode]="'indeterminate'"
+        [value]="0">
+    </mat-progress-spinner>
+</div>
+<div class="contenedor-principal">
+  <div class="contenido-modal">
+    <div class="container-titulo-modal">
+      <h1>PRIMER INFORME - {{nombre_alumno}}</h1>
+
+    </div>
+    <div class="container">
+
+      <form [formGroup]="formulario">
+        <div class="contenedores-pares ">
+          <div class="mb-3" class="item-contenedor-par contenedor-individual-titulo">
+            <label for="pregunta1" class="form-label"
+              >¿El alumno asistio ala sesion?</label
+            >
+            <select class="form-select" id="pregunta1"  formControlName="primera" (change)="activarInputs($event)">
+              <!-- si asistio , numero de sesiones, horas de atencion en automatico. -->
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="SI">Sí</option>
+              <option value="NO">No</option>
+            </select>
+          </div>
+        </div>
+
+
+        <div *ngIf="mostrar" class="contenedores-pares">
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta1" class="form-label"
+              >1. FICHA DE REGISTRO DE DIAGNOSTICO</label
+            >
+            <select class="form-select" id="pregunta1" formControlName="segunda">
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="SI">Sí</option>
+              <option value="NO">No</option>
+            </select>
+          </div>
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+              >2. ¿BECA?</label
+            >
+            <select class="form-select" id="pregunta2" formControlName="tercera" (change)="activaInputBeca($event)">
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="SI">Sí</option>
+              <option value="NO">No</option>
+            </select>
+          </div>
+        </div>
+
+        <div *ngIf="mostrar" class="contenedores-pares">
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta1" class="form-label"
+              >3. TIPO DE BECA</label
+            >
+            <select class="form-select" id="pregunta1"  formControlName="cuarta">
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="{{item.abreviacion}}" *ngFor="let item of listaBecas">{{item.nombre}}</option>
+
+
+
+            </select>
+          </div>
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+              >4. ACTIVIDAD TUTORIAL</label
+            >
+            <select class="form-select" id="pregunta2" formControlName="quinta">
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="{{item.abreviacion}}" *ngFor="let item of listaActividadesTutorial">{{item.nombre}}</option>
+
+            </select>
+          </div>
+        </div>
+
+
+        <div *ngIf="mostrar" class="contenedores-pares">
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta1" class="form-label"
+              >5. MODALIDAD</label
+            >
+            <select class="form-select" id="pregunta1" formControlName="sexta" >
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="{{item.abreviacion}}" *ngFor="let item of listaModalidades">{{item.nombre}}</option>
+
+
+
+            </select>
+          </div>
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+              >6. SITUACION PROBLEMATICA</label
+            >
+            <select class="form-select" id="pregunta2" formControlName="septima">
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="{{item.abreviacion}}" *ngFor="let item of listaSituacionesProblematicas">{{item.nombre}}</option>
+
+
+            </select>
+          </div>
+        </div>
+
+
+        <!--  -->
+
+
+          <div  *ngIf="mostrar" class="contenedores-pares">
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta1" class="form-label"
+              >7. CANALIZACION</label
+            >
+            <select class="form-select" id="pregunta1" formControlName="octava" (change)="activarCanalizacion($event)">
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="SI">SI</option>
+              <option value="NO">NO</option>
+
+
+            </select>
+          </div>
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+              >8. TIPO CANALIZACION</label
+            >
+            <select class="form-select" id="pregunta1" formControlName="decima" (change)="seleccionCanalizacion($event)" >
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="{{item.abreviacion}}" *ngFor="let item of listaCanalizaciones">{{item.nombre}}</option>
+
+
+            </select>
+
+          </div>
+        </div>
+
+        <div *ngIf="mostrar" class="contenedores-pares">
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+            >9. BECA CANALIZACION</label
+          >
+          <select class="form-select" id="pregunta1" formControlName="onceava" >
+            <option value="" selected >
+              Selecciona una respuesta
+            </option>
+            <option value="{{item.abreviacion}}" *ngFor="let item of listaCanalizacionesBecas">{{item.nombre}}</option>
+
+          </select>
+          </div>
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+              >10. ATENCION DE CANALIZACION</label
+            >
+            <select class="form-select" id="pregunta1" formControlName="doceava" >
+              <option value="" selected >
+                Selecciona una respuesta
+              </option>
+              <option value="SI">SI</option>
+              <option value="NO">NO</option>
+            </select>
+          </div>
+        </div>
+
+        <div *ngIf="mostrar"  class="contenedores-pares">
+          <div class="mb-3" class="item-contenedor-par">
+            <label for="pregunta2" class="form-label"
+              >11. OBSERVACIONES</label
+            >
+            <input type="text" class="form-control" name="" id="" formControlName="novena" placeholder="Ingresa observaciones porfavor.">
+
+          </div>
+        </div>
+
+        <div class="contenedores-pares">
+          <button type="submit" class="btn btn-ediles" style="margin-top: 30px;" (click)="enviarInforme()">Enviar</button>
+
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,164 @@
+<div class="contenedor-principal">
+  <div class="formulario-comisiones">
+    <form [formGroup]="formulario" class="contenedor-form">
+      <div class="contenedores-form contenedor-inputs">
+        <div class="form-floating" style="margin: 0px 10px 20px 10px">
+          <select
+            class="form-select"
+            id="floatingSelect12"
+            (change)="GeneracionSeleccionado($event)"
+          >
+            <option selected>SELECCIONA UNA GENERACION</option>
+            <option
+              *ngFor="let generaciones of generaciones; let i = index"
+              value="{{ generaciones.id }}"
+            >
+              {{ generaciones.nombre }}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA UNA GENERACION</label>
+        </div>
+        <br />
+
+        <!-- <div class="form-floating" style="margin: 0px 10px 20px 10px">
+          <select
+            class="form-select"
+            id="floatingSelect12"
+            (change)="carreraSeleccionada($event)"
+          >
+            <option selected>SELECCIONA CARRERA</option>
+
+            <option
+              *ngFor="let carrera of listaCarreras; let i = index"
+              value="{{ carrera.id }}"
+            >
+              {{ carrera.nombre | uppercase }}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA CARRERA</label>
+        </div>
+        <br> -->
+        <div class="form-floating" style="margin: 0px 10px 20px 10px">
+          <select
+            class="form-select"
+            id="floatingSelect12"
+            (change)="periodoSeleccionada($event)"
+          >
+            <option selected>SELECCIONA PERIODO</option>
+
+            <option
+              *ngFor="let periodo of periodo; let i = index"
+              value="{{ periodo.nombre }}"
+            >
+              {{ periodo.nombre | uppercase }}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA PERIODO</label>
+        </div>
+        <br />
+        <div class="form-floating" style="margin: 0px 10px 20px 10px">
+          <select
+            class="form-select"
+            id="floatingSelect12"
+            (change)="informeSeleccionado($event)"
+          >
+            <option selected>SELECCIONA INFORME</option>
+
+            <option
+              *ngFor="let informe of informes; let i = index"
+              value="{{ informe.valor }}"
+            >
+              {{ informe.nombre | uppercase }}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA INFORME</label>
+        </div>
+        <br />
+        <div class="form-floating" style="margin: 0px 10px 20px 10px">
+          <button
+            class="btn btn-primary"
+            (click)="generarReporte()"
+            *ngIf="!mostrarPeriodos"
+            style="padding: 10px"
+          >
+            GENERAR REPORTES
+          </button>
+          <button
+            class="btn btn-danger"
+            (click)="downloadDivAsPDF()"
+            style="padding: 10px"
+            *ngIf="mostrarPeriodos"
+          >
+           DESCARGAR REPORTE
+          </button>
+        </div>
+      </div>
+
+      <div class="container-tutorados" style="background-color: white" *ngIf="mostrarPeriodos">
+        <!-- <div id="myChart" width="400" height="400"></div> -->
+        <table class="tabla-reporte" style="width: 100%; border-collapse: collapse; border-spacing: 0; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <thead>
+            <tr>
+              <th>Tutor</th>
+              <th>Total Tutorados</th>
+              <th>Primer Informe</th>
+              <th>Segundo Informe</th>
+              <th>Tercer Informe</th>
+              <th>Total Informes Terminados</th>
+              <th>Pendientes</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <ng-container *ngFor="let reporte of dataReportes | keyvalue">
+              <tr>
+                <td class="class-td " style="text-align: left !important;">{{ reporte.value.docente.nombre }} {{ reporte.value.docente.apellido_paterno }} {{ reporte.value.docente.apellido_materno }}</td>
+                <td class="class-td ">{{ reporte.value.informes.total_tutorados }}</td>
+                <td class="class-td ">{{ reporte.value.informes.total_primer_informe_terminados }}</td>
+                <td class="class-td ">{{ reporte.value.informes.total_segundo_informe_terminados }}</td>
+                <td class="class-td ">{{ reporte.value.informes.total_tercer_informe_terminados }}</td>
+                <td class="class-td ">{{ reporte.value.informes.total_informes_terminados }}</td>
+                <td class="class-td ">{{ reporte.value.informes.pendientes }}</td>
+              </tr>
+
+            </ng-container>
+            <!-- Utiliza *ngFor para recorrer los objetos de data -->
+            <!-- <ng-container *ngFor="let tutorData of dataReportes">
+              <tr>
+                <td>{{ tutorData.docente.nombre }} {{ tutorData.docente.apellido_paterno }} {{ tutorData.docente.apellido_materno }}</td>
+                <td>{{ tutorData.informes.total_tutorados }}</td>
+                <td>{{ tutorData.informes.total_primer_informe_terminados }}</td>
+                <td>{{ tutorData.informes.total_segundo_informe_terminados }}</td>
+                <td>{{ tutorData.informes.total_tercer_informe_terminados }}</td>
+                <td>{{ tutorData.informes.total_informes_terminados }}</td>
+                <td>{{ tutorData.informes.pendientes }}</td>
+              </tr>
+              <ng-container *ngFor="let tutorado of tutorData.value.tutorados | keyvalue">
+                <tr>
+                  <td>{{ tutorado.value.nombre }} {{ tutorado.value.apellido_paterno }} {{ tutorado.value.apellido_materno }}</td>
+                  <td>{{ tutorado.value.informes.total_tutorados }}</td>
+                  <td>{{ tutorado.value.informes.total_primer_informe_terminados }}</td>
+                  <td>{{ tutorado.value.informes.total_segundo_informe_terminados }}</td>
+                  <td>{{ tutorado.value.informes.total_tercer_informe_terminados }}</td>
+                  <td>{{ tutorado.value.informes.total_informes_terminados }}</td>
+                  <td>{{ tutorado.value.informes.pendientes }}</td>
+                </tr>
+              </ng-container>
+            </ng-container> -->
+          </tbody>
+        </table>
+
+
+
+        </div>
+
+
+      <!-- ================================================================================ -->
+      <!-- ================================================================================ -->
+      <!-- <div class="contenedor-botones">
+        <button class="btn btn-ediles" (click)="cargarGeneracion()">AGREGAR GENERACION</button>
+
+      </div> -->
+    </form>
+  </div>
+</div>

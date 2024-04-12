@@ -1,0 +1,830 @@
+<div class="contenedor-principal">
+  <div class="formulario-comisiones">
+    <form [formGroup]="formulario" class="contenedor-form">
+      <div class="contenedores-form contenedor-inputs">
+        <div class="form-floating" style="margin: 0px 10px 20px 10px">
+          <select
+            class="form-select custom-select-style"
+            id="floatingSelect12"
+            (change)="GeneracionSeleccionado($event)"
+          >
+            <option selected>SELECCIONA UNA GENERACION</option>
+            <option
+              *ngFor="let generaciones of generaciones; let i = index"
+              value="{{ generaciones.id }}"
+            >
+              {{ generaciones.nombre }}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA UNA GENERACION</label>
+        </div>
+        <br />
+        <div class="form-floating" style="margin: 0px 10px 20px 10px">
+          <select
+            class="form-select custom-select-style"
+            id="floatingSelect12"
+            (change)="periodoSeleccionada($event)"
+          >
+            <option selected>SELECCIONA UN PERIODO</option>
+
+            <option
+              *ngFor="let periodo of periodo; let i = index"
+              value="{{ periodo.nombre }}"
+            >
+              {{ periodo.nombre | uppercase }}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA UN PERIODO</label>
+        </div>
+        <br />
+        <div class="form-floating" style="margin: 0px 10px 20px 10px">
+          <select
+            class="form-select custom-select-style"
+            id="floatingSelect12"
+            (change)="informeSeleccionado($event)"
+          >
+            <option selected>SELECCIONA CARRERA</option>
+
+            <option
+              *ngFor="let carrera of listaCarreras; let i = index"
+              value="{{ carrera.id }}"
+            >
+              {{ carrera.nombre | uppercase }}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA CARRERA</label>
+        </div>
+        <br />
+        <div class="form-floating" style="margin: 0px 10px 20px 10px">
+          <button
+            class="btn btn-primary"
+            (click)="generarReporte()"
+            *ngIf="!mostrarPeriodos"
+            style="padding: 10px"
+          >
+            GENERAR REPORTES
+          </button>
+          <button
+            class="btn btn-danger"
+            (click)="downloadDivAsPDF()"
+            style="padding: 10px"
+            *ngIf="mostrarPeriodos"
+          >
+           DESCARGAR REPORTE
+          </button>
+        </div>
+      </div>
+
+      <div class="container-tutorados" style="background-color: white" *ngIf="mostrarPeriodos">
+        <!-- <div id="myChart" width="400" height="400"></div> -->
+        <div class="primer-formato">
+          <div class="container" style="padding: 10px; margin: 25px">
+            <div class="row">
+              <!-- Primera columna que ocupa las 4 filas -->
+              <div
+                class="col-md-4 custom-col"
+                style="
+                  display: flex;
+                  text-align: center;
+                  justify-content: center;
+                  padding: 0 !important;
+                "
+              >
+                <div class="row" style="text-align: center">
+                  <div
+                    class="col-md-12"
+                    style="
+                      display: flex;
+                      text-align: center;
+                      justify-content: center;
+                      align-items: center;
+                      padding: 0 !important;
+                    "
+                  >
+                    <img
+                      src="../../../../../assets/img/logo_transparente.png"
+                      width="50%"
+                      height="50%"
+                      alt
+                    />
+                  </div>
+                </div>
+              </div>
+              <!-- Columnas 2 y 3 que ocupan el espacio restante -->
+              <div class="col-md-8 custom-col" width="50%" height="50%">
+                <div class="row">
+                  <div class="col-md-12 titulo-reporte-1">
+                    INSTITUTO TECNOLOGICO SUPERIOR DE LERDO
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 custom-col columnas-centradas-3">
+                    <p style="margin-top: 5px;">
+                      NOMBRE DEL FORMATO:
+                    </p>
+                    <p>
+                      Cedulas del Coordinador de Tutorias por
+                      PE
+                    </p>
+
+                  </div>
+                  <div class="col-md-6 custom-col custom-col columnas-header-1">
+                    CÓDIGO: P - DC - 03 - 004
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 custom-col custom-col columnas-header-1">
+                    RESPONSABLE: Departamento de Desarrollo Académico
+                  </div>
+                  <div class="col-md-6 custom-col custom-col columnas-header-1">R. 01-01-23</div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 custom-col custom-col columnas-header-1"></div>
+                  <div class="col-md-6 custom-col custom-col columnas-header-1">HOJA: 1 - 1</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container" style="padding: 10px; margin: 25px">
+            <div class="row">
+              <!-- Primera columna que ocupa las 4 filas -->
+              <div class="col-md-10 custom-col columnas-centradas"> </div>
+              <div class="col-md-2 custom-col columnas-centradas">AÑO: </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-10 custom-col columnas-centradas"> </div>
+              <div class="col-md-2 custom-col columnas-centradas">PERIODO: </div>
+            </div>
+
+            <div class="row">
+
+              <div class="col-md-12 custom-col columnas-centradas" style="background-color: rgb(146, 228, 98); font-weight: bold; ">INDICADORES DE ENTREGA DE REPORTES</div>
+            </div>
+
+            <div class="row">
+              <!-- Primera columna que ocupa las 4 filas -->
+              <div class="col-md-10 custom-col columnas-start"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" > Indicador de entrega</div>
+              <div class="col-md-2 custom-col columnas-centradas"  style="background-color: rgb(146, 228, 98); font-weight: bold;"></div>
+            </div>
+                      <div class="row">
+                        <!-- Primera columna que ocupa las 4 filas -->
+                        <div class="col-md-10 custom-col columnas-start">Tutores que entregan informe mensual de tutorías en tiempo y forma
+                        </div>
+                        <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.total_tutores_asignados}}</div>
+                      </div>
+                      <div class="row">
+                        <!-- Primera columna que ocupa las 4 filas -->
+                        <div class="col-md-10 custom-col columnas-start">Total de tutores asignados
+                        </div>
+                        <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.total_tutores_asignados}}</div>
+                      </div>
+                      <div class="row">
+                        <!-- Primera columna que ocupa las 4 filas -->
+                        <div class="col-md-10 custom-col columnas-start">Tutores que entregan informe mensual de tutorías en tiempo y forma/Total de tutores asignados*100
+                        </div>
+                        <div class="col-md-2 custom-col columnas-centradas">{{(this.dataReporte.total_tutores_asignados/this.dataReporte.total_tutores_asignados)*100}}%</div>
+                      </div>
+                  <!-- ====================================================================================================== -->
+                  <!-- ====================================================================================================== -->
+                  <!-- ====================================================================================================== -->
+
+                  <div class="row">
+
+                    <div class="col-md-12 custom-col columnas-centradas" style="background-color: rgb(98, 154, 228); font-weight: bold; ">INDICADORES DE RESPUESTA AL PROGRAMA
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <!-- Primera columna que ocupa las 4 filas -->
+                    <div class="col-md-10 custom-col columnas-start"  style="background-color: rgb(98, 154, 228); font-weight: bold; padding: 10px;" >Elaboración de diagnostico inicial
+                    </div>
+                    <div class="col-md-2 custom-col columnas-centradas"  style="background-color: rgb(98, 154, 228); font-weight: bold;"></div>
+                  </div>
+                            <div class="row">
+                              <!-- Primera columna que ocupa las 4 filas -->
+                              <div class="col-md-10 custom-col columnas-start">Número de tutorados con diagnóstico inicial
+
+                              </div>
+                              <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.numero_total_alumnos_con_diagnostico}}</div>
+                            </div>
+                            <div class="row">
+                              <!-- Primera columna que ocupa las 4 filas -->
+                              <div class="col-md-10 custom-col columnas-start">Total de tutorados atendidos en el programa
+
+                              </div>
+                              <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.numero_total_alumnos_asignados_carrera}}</div>
+                            </div>
+                            <div class="row">
+                              <!-- Primera columna que ocupa las 4 filas -->
+                              <div class="col-md-10 custom-col columnas-start">Número de tutorados con diagnóstico inicial/Total de tutorados  atendidos en el programa por 100
+
+                              </div>
+                              <div class="col-md-2 custom-col columnas-centradas">{{(this.dataReporte.numero_total_alumnos_con_diagnostico/this.dataReporte.numero_total_alumnos_asignados_carrera)*100}}%</div>
+                            </div>
+
+                    <div class="row">
+                              <!-- Primera columna que ocupa las 4 filas -->
+                      <div class="col-md-10 custom-col columnas-start"  style="background-color: rgb(98, 154, 228); font-weight: bold; padding: 10px;" >Asistencia de alumnos
+                      </div>
+                      <div class="col-md-2 custom-col columnas-centradas"  style="background-color: rgb(98, 154, 228); font-weight: bold;"></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-10 custom-col columnas-start">Total de alumnos asignados de la carrera</div>
+                      <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.numero_total_alumnos_asignados_carrera}}</div>
+                    </div>
+                        <div class="row">
+                          <div class="col-md-10 custom-col columnas-start">Alumnos atendidos 3 o más veces</div>
+                          <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.numero_total_alumnos_atendidos_3}}</div>
+                        </div>
+
+                        <div class="row">
+                          <div class="col-md-10 custom-col columnas-start">Alumnos atendidos 3 o más veces/Total de alumnos asignados de la carrera por 100</div>
+                          <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.porcentaje_alumnos_atendidos_3}}%</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-10 custom-col columnas-start">Alumnos atendidos 2 veces</div>
+                          <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.numero_total_alumnos_atendidos_2}}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-10 custom-col columnas-start">Alumnos atendidos 2 veces/Total de alumnos asignados de la carrera por 100</div>
+                          <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.porcentaje_alumnos_atendidos_2}}%</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-10 custom-col columnas-start">Alumnos atendidos 1 vez</div>
+                          <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.numero_total_alumnos_atendidos_1}}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-10 custom-col columnas-start">Aumnos atendidos 1 vez/Total de alumnos asignados de la carrera</div>
+                          <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.porcentaje_alumnos_atendidos_1}}%</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-10 custom-col columnas-start">Alumnos no atendidos por inasistencia </div>
+                          <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.alumnos_atendidos_forma_inasistencia}}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-10 custom-col columnas-start">Alumnos no atendidos por inasistencia/Total de alumnos asignados de la carrera* 100</div>
+                          <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.alumnos_atendidos_forma_inasistencia_porcentaje}}%</div>
+                        </div>
+
+
+
+                    <div class="row">
+                      <div class="col-md-10 custom-col columnas-start"  style="background-color: rgb(221, 15, 15); font-weight: bold; padding: 10px;" >Sumatoria</div>
+                      <div class="col-md-2 custom-col columnas-centradas"  style="background-color: rgb(221, 15, 15); font-weight: bold;">{{this.dataReporte.porcentaje_alumnos_atendidos_3 + this.dataReporte.porcentaje_alumnos_atendidos_2 + this.dataReporte.porcentaje_alumnos_atendidos_1 + this.dataReporte.alumnos_atendidos_forma_inasistencia_porcentaje}}%</div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-10 custom-col columnas-start"  style="background-color: rgb(98, 154, 228); font-weight: bold; padding: 10px;" >Canalización a psicología</div>
+                      <div class="col-md-2 custom-col columnas-centradas"  style="background-color: rgb(98, 154, 228); font-weight: bold;"></div>
+                    </div>
+                        <div class="row">
+                          <div class="col-md-10 custom-col columnas-start">Tutorados canalizados y atendidos</div>
+                          <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.alumnos_atendidos_piscologia}}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-10 custom-col columnas-start">Tutorados canalizados y atendidos/Total de tutorados *100</div>
+                          <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.porcentaje_alumnos_atendidos_piscologia}}%</div>
+                        </div>
+
+                <div class="row">
+                          <div class="col-md-10 custom-col columnas-start"  style="background-color: rgb(98, 154, 228); font-weight: bold; padding: 10px;" >Canalización académica</div>
+                          <div class="col-md-2 custom-col columnas-centradas"  style="background-color: rgb(98, 154, 228); font-weight: bold;"></div>
+                  </div>
+                      <div class="row">
+                        <div class="col-md-10 custom-col columnas-start">Tutorados  atendidos en asesoría académica</div>
+                        <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.alumnos_atendidos_academica}}</div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-10 custom-col columnas-start">Tutorados canalizados y atendidos/Total de tutorados *100</div>
+                        <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.porcentaje_alumnos_atendidos_academica}}%</div>
+                      </div>
+
+                  <div class="row">
+                    <div class="col-md-10 custom-col columnas-start"  style="background-color: rgb(98, 154, 228); font-weight: bold; padding: 10px;" >Canalización becas</div>
+                    <div class="col-md-2 custom-col columnas-centradas"  style="background-color: rgb(98, 154, 228); font-weight: bold;"></div>
+                  </div>
+
+                      <div class="row">
+                        <div class="col-md-10 custom-col columnas-start">Tutorados  atendidos en becas</div>
+                        <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.alumnos_atendidos_becas}}</div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-10 custom-col columnas-start">Tutorados atendidos en becas/Tutorados detectados con necesidad de becas *100</div>
+                        <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.porcentaje_alumnos_atendidos_becas}}%</div>
+                      </div>
+
+                  <div class="row">
+                        <div class="col-md-10 custom-col columnas-start"  style="background-color: rgb(98, 154, 228); font-weight: bold; padding: 10px;" >Canalización salud</div>
+                        <div class="col-md-2 custom-col columnas-centradas"  style="background-color: rgb(98, 154, 228); font-weight: bold;"></div>
+                  </div>
+
+                      <div class="row">
+                        <div class="col-md-10 custom-col columnas-start">Tutorados  atendidos en salud</div>
+                        <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.alumnos_atendidos_salud}}</div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-10 custom-col columnas-start">Tutorados atendidos en salud/Tutorados detectados con necesidad desalud *100</div>
+                        <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.porcentaje_alumnos_atendidos_salud}}%</div>
+                      </div>
+                <div class="row">
+                  <div class="col-md-10 custom-col columnas-start"  style="background-color: rgb(98, 154, 228); font-weight: bold; padding: 10px;" >Otras canalizaciones</div>
+                  <div class="col-md-2 custom-col columnas-centradas"  style="background-color: rgb(98, 154, 228); font-weight: bold;"></div>
+                </div>
+
+                      <div class="row">
+                        <div class="col-md-10 custom-col columnas-start">Alumnos atendidos en otras instancias</div>
+                        <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.alumnos_atendidos_otras}}</div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-10 custom-col columnas-start">Alumnos atendidos en otras instancias/Alumnos detectados con otras necesidades de canalización</div>
+                        <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.porcentaje_alumnos_atendidos_otras}}%</div>
+                      </div>
+
+
+                <div class="row">
+                  <div class="col-md-10 custom-col columnas-start"  style="background-color: rgb(98, 154, 228); font-weight: bold; padding: 10px;" >Cobertura del programa</div>
+                  <div class="col-md-2 custom-col columnas-centradas"  style="background-color: rgb(98, 154, 228); font-weight: bold;"></div>
+                </div>
+
+                      <div class="row">
+                        <div class="col-md-10 custom-col columnas-start">Total de matrícula de la carrera</div>
+                        <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.total_matricula_carrera}}</div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-10 custom-col columnas-start">Total de tutorados asignados en la carrera/Total de la matrícula de la carrera * 100</div>
+                        <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.porcentaje_total_matricula_carrera}}%</div>
+                      </div>
+
+
+                  <div class="row">
+                    <div class="col-md-12 custom-col columnas-centradas" style="background-color: rgb(228, 167, 98); font-weight: bold; ">INDICADORES DE PARTICIPACIÓN</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-10 custom-col columnas-start"  style="background-color: rgb(228, 167, 98); font-weight: bold; padding: 10px;" >Docentes participantes</div>
+                    <div class="col-md-2 custom-col columnas-centradas"  style="background-color: rgb(228, 167, 98); font-weight: bold;"></div>
+                  </div>
+
+                            <div class="row">
+                              <div class="col-md-10 custom-col columnas-start">Número de tutores por carrera</div>
+                              <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.total_tutores_asignados}}</div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-10 custom-col columnas-start">Total de la planta docente de la carrera</div>
+                              <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.numero_tutores_carrera_total}}</div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-10 custom-col columnas-start">Número de tutores por carrera/Total de la planta docente de la carrera *100</div>
+                              <div class="col-md-2 custom-col columnas-centradas">{{(this.dataReporte.total_tutores_asignados/this.dataReporte.numero_tutores_carrera_total)*100}}%</div>
+                            </div>
+
+                  <div class="row">
+                    <div class="col-md-10 custom-col columnas-start"  style="background-color: rgb(228, 167, 98); font-weight: bold; padding: 10px;" >Cobertura de capacitación</div>
+                    <div class="col-md-2 custom-col columnas-centradas"  style="background-color: rgb(228, 167, 98); font-weight: bold;"></div>
+                  </div>
+
+                          <div class="row">
+                            <div class="col-md-10 custom-col columnas-start">Tutores capacitados en el año</div>
+                            <div class="col-md-2 custom-col columnas-centradas">{{tutores_capacitados_year}}</div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-10 custom-col columnas-start">Total de tutores del programa</div>
+                            <div class="col-md-2 custom-col columnas-centradas">{{this.dataReporte.numero_tutores_carrera_total}}</div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-10 custom-col columnas-start">(Tutores capacitados en el año/Total de tutores del programa )*100</div>
+                            <div class="col-md-2 custom-col columnas-centradas">{{(tutores_capacitados_year/this.dataReporte.numero_tutores_carrera_total) * 100 }}%</div>
+                          </div>
+
+                </div>
+
+        </div>
+        <div class="segundo-formato">
+          <div class="container" style="padding: 10px; margin: 25px">
+            <div class="row">
+              <!-- Primera columna que ocupa las 4 filas -->
+              <div
+                class="col-md-4 custom-col"
+                style="
+                  display: flex;
+                  text-align: center;
+                  justify-content: center;
+                  padding: 0 !important;
+                "
+              >
+                <div class="row" style="text-align: center">
+                  <div
+                    class="col-md-12"
+                    style="
+                      display: flex;
+                      text-align: center;
+                      justify-content: center;
+                      align-items: center;
+                      padding: 0 !important;
+                    "
+                  >
+                    <img
+                      src="../../../../../assets/img/logo_transparente.png"
+                      width="50%"
+                      height="50%"
+                      alt
+                    />
+                  </div>
+                </div>
+              </div>
+              <!-- Columnas 2 y 3 que ocupan el espacio restante -->
+              <div class="col-md-8 custom-col" width="50%" height="50%">
+                <div class="row">
+                  <div class="col-md-12 titulo-reporte-1">
+                    INSTITUTO TECNOLOGICO SUPERIOR DE LERDO
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 custom-col columnas-centradas-3">
+                    <p style="margin-top: 5px;">
+                      NOMBRE DEL FORMATO:
+                    </p>
+                    <p>
+                      Cedulas del Coordinador de Tutorias por
+                      PE
+                    </p>
+
+                  </div>
+                  <div class="col-md-6 custom-col custom-col columnas-header-1">
+                    CÓDIGO: P - DC - 03 - 004
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 custom-col columnas-header-1" >
+                    RESPONSABLE: Departamento de Desarrollo Académico
+                  </div>
+                  <div class="col-md-6 custom-col custom-col columnas-header-1">R. 01-01-23</div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 custom-col custom-col columnas-header-1"></div>
+                  <div class="col-md-6 custom-col custom-col columnas-header-1">HOJA: 1 - 1</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container" style="padding: 10px; margin: 25px">
+
+
+              <div class="row">
+                <!-- Primera columna que ocupa las 4 filas -->
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >No.</div>
+                <div class="col-md-2 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >NOMBRE DEL TUTOR</div>
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >T.ASIGNADOS</div>
+                <div class="col-md-3 custom-col columnas-centradas-2" style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px; display:flex; flex-direction: column;">
+                  TUTORADOS ATENDIDOS
+                  <div class="tutorados-atendidos" style="display: flex; flex-direction: row; justify-content: center;">
+                        <div class="row" style="margin-right: 5px;">
+                          <div class="col-md-12">INDIVIDUAL</div>
+                      </div>
+                      <div class="row" style="margin-right: 5px;">
+                          <div class="col-md-12">GRUPAL</div>
+                      </div>
+                      <div class="row" style="margin-right: 5px;">
+                          <div class="col-md-12">AMBAS</div>
+                      </div>
+                  </div>
+
+              </div>
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >NO ASISTIERON</div>
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >Comprobación</div>
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >BAJAS</div>
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >DESERCIÓN</div>
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >GRUPO / SECCIÓN</div>
+
+                <!-- <div class="col-md-2 custom-col columnas-centradas"  style="background-color: rgb(146, 228, 98); font-weight: bold;"></div> -->
+              </div>
+              <!-- Fila de datos -->
+              <div class="row" *ngFor="let informe of dataReporte.informe_general">
+                <div class="col-md-1 custom-col columnas-centradas-2 " >{{informe.numero_checador}}</div>
+                <div class="col-md-2 custom-col columnas-centradas-2 " >{{informe.nombre_tutor}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 " >{{informe.tutorados_asignados}}</div>
+                <div class="col-md-3 custom-col columnas-centradas " style="display:flex; flex-direction: column;">
+
+                  <div class="tutorados-atendidos" style="margin-top: 5px; display: flex; flex-direction: row; justify-content: center;  width: 100%;">
+                        <div class="row" style="width: 33.33%;" >
+                          <div class="col-md-12" style="margin: 5px; ">{{informe.tutores_asignados_individual}}</div>
+                      </div>
+                      <div class="row" style="width: 33.33%;" >
+                          <div class="col-md-12" style="margin: 5px;">{{informe.tutores_asignados_grupal}}</div>
+                      </div>
+                      <div class="row" style="width: 33.33%;">
+                          <div class="col-md-12"  style="margin: 5px;">{{informe.tutores_asignados_ambas}}</div>
+                      </div>
+                  </div>
+
+              </div>
+                <div class="col-md-1 custom-col columnas-centradas-2 ">{{informe.no_asistieron}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 ">{{informe.comprobacion}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 ">{{informe.bajas}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 ">{{informe.desercion}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 ">{{informe.grupo_seccion}}</div>
+
+              </div>
+
+          </div>
+        </div>
+        <div class="tercer-formato">
+          <div class="container" style="padding: 10px; margin: 25px">
+            <div class="row">
+              <!-- Primera columna que ocupa las 4 filas -->
+              <div
+                class="col-md-4 custom-col"
+                style="
+                  display: flex;
+                  text-align: center;
+                  justify-content: center;
+                  padding: 0 !important;
+                "
+              >
+                <div class="row" style="text-align: center">
+                  <div
+                    class="col-md-12"
+                    style="
+                      display: flex;
+                      text-align: center;
+                      justify-content: center;
+                      align-items: center;
+                      padding: 0 !important;
+                    "
+                  >
+                    <img
+                      src="../../../../../assets/img/logo_transparente.png"
+                      width="50%"
+                      height="50%"
+                      alt
+                    />
+                  </div>
+                </div>
+              </div>
+              <!-- Columnas 2 y 3 que ocupan el espacio restante -->
+              <div class="col-md-8 custom-col" width="50%" height="50%">
+                <div class="row">
+                  <div class="col-md-12 titulo-reporte-1">
+                    INSTITUTO TECNOLOGICO SUPERIOR DE LERDO
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 custom-col columnas-centradas-3">
+                    <p style="margin-top: 5px;">
+                      NOMBRE DEL FORMATO:
+                    </p>
+                    <p>
+                      Cedulas del Coordinador de Tutorias por
+                      PE
+                    </p>
+
+                  </div>
+                  <div class="col-md-6 custom-col custom-col columnas-header-1">
+                    CÓDIGO: P - DC - 03 - 004
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 custom-col columnas-header-1" >
+                    RESPONSABLE: Departamento de Desarrollo Académico
+                  </div>
+                  <div class="col-md-6 custom-col custom-col columnas-header-1">R. 01-01-23</div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6 custom-col custom-col columnas-header-1"></div>
+                  <div class="col-md-6 custom-col custom-col columnas-header-1">HOJA: 1 - 1</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container" style="padding: 10px; margin: 25px">
+
+            <div class="row">
+              <!-- Primera columna que ocupa las 4 filas -->
+              <div class="col-md-3 custom-col columnas-centradas-2"  style="background-color: rgb(242, 246, 240); font-weight: bold; padding: 10px;" ></div>
+              <div class="col-md-8 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >SEMESTRES</div>
+              <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(242, 246, 240); font-weight: bold; padding: 10px;" ></div>
+
+
+              <!-- <div class="col-md-2 custom-col columnas-centradas"  style="background-color: rgb(146, 228, 98); font-weight: bold;"></div> -->
+            </div>
+              <div class="row">
+                <!-- Primera columna que ocupa las 4 filas -->
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >No.</div>
+                <div class="col-md-2 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >TUTOR</div>
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >1</div>
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >2</div>
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >3</div>
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >4</div>
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >5</div>
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >6</div>
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >7</div>
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >8</div>
+                <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >TOTAL</div>
+
+
+                <!-- <div class="col-md-2 custom-col columnas-centradas"  style="background-color: rgb(146, 228, 98); font-weight: bold;"></div> -->
+              </div>
+              <!-- Fila de datos -->
+              <div class="row" *ngFor="let reporte_por_sexo_2 of dataReporte.distribucion_por_sexo_2">
+                <div class="col-md-1 custom-col columnas-centradas-2 " >{{reporte_por_sexo_2.numero_checador}}</div>
+                <div class="col-md-2 custom-col columnas-centradas-2 " >{{reporte_por_sexo_2.nombre_tutor}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 " >{{reporte_por_sexo_2.semestre_1}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 ">{{reporte_por_sexo_2.semestre_2}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 ">{{reporte_por_sexo_2.semestre_3}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 ">{{reporte_por_sexo_2.semestre_4}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 ">{{reporte_por_sexo_2.semestre_5}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 ">{{reporte_por_sexo_2.semestre_6}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 ">{{reporte_por_sexo_2.semestre_7}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 ">{{reporte_por_sexo_2.semestre_8}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 ">{{reporte_por_sexo_2.total}}</div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-3 custom-col columnas-centradas-2 " ></div>
+                <div class="col-md-1 custom-col columnas-centradas-2 " style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >{{this.dataReporte.distribucion_por_sexo_2_total.semestre_1_total}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 " style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >{{this.dataReporte.distribucion_por_sexo_2_total.semestre_2_total}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 " style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >{{this.dataReporte.distribucion_por_sexo_2_total.semestre_3_total}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 " style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >{{this.dataReporte.distribucion_por_sexo_2_total.semestre_4_total}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 " style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >{{this.dataReporte.distribucion_por_sexo_2_total.semestre_5_total}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 " style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >{{this.dataReporte.distribucion_por_sexo_2_total.semestre_6_total}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 " style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >{{this.dataReporte.distribucion_por_sexo_2_total.semestre_7_total}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 " style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >{{this.dataReporte.distribucion_por_sexo_2_total.semestre_8_total}}</div>
+                <div class="col-md-1 custom-col columnas-centradas-2 " style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >{{this.dataReporte.distribucion_por_sexo_2_total.total}}</div>
+              </div>
+          </div>
+        </div>
+
+       <div class="cuarto-formato">
+                <div class="container" style="padding: 10px; margin: 25px">
+                  <div class="row">
+                    <!-- Primera columna que ocupa las 4 filas -->
+                    <div
+                      class="col-md-4 custom-col"
+                      style="
+                        display: flex;
+                        text-align: center;
+                        justify-content: center;
+                        padding: 0 !important;
+                      "
+                    >
+                      <div class="row" style="text-align: center">
+                        <div
+                          class="col-md-12"
+                          style="
+                            display: flex;
+                            text-align: center;
+                            justify-content: center;
+                            align-items: center;
+                            padding: 0 !important;
+                          "
+                        >
+                          <img
+                            src="../../../../../assets/img/logo_transparente.png"
+                            width="50%"
+                            height="50%"
+                            alt
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Columnas 2 y 3 que ocupan el espacio restante -->
+                    <div class="col-md-8 custom-col" width="50%" height="50%">
+                      <div class="row">
+                        <div class="col-md-12 titulo-reporte-1">
+                          INSTITUTO TECNOLOGICO SUPERIOR DE LERDO
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 custom-col columnas-centradas-3">
+                          <p style="margin-top: 5px;">
+                            NOMBRE DEL FORMATO:
+                          </p>
+                          <p>
+                            Cedulas del Coordinador de Tutorias por
+                            PE
+                          </p>
+
+                        </div>
+                        <div class="col-md-6 custom-col custom-col columnas-header-1">
+                          CÓDIGO: P - DC - 03 - 004
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 custom-col columnas-header-1" >
+                          RESPONSABLE: Departamento de Desarrollo Académico
+                        </div>
+                        <div class="col-md-6 custom-col custom-col columnas-header-1">R. 01-01-23</div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6 custom-col custom-col columnas-header-1"></div>
+                        <div class="col-md-6 custom-col custom-col columnas-header-1">HOJA: 1 - 1</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="container" style="padding: 10px; margin: 25px">
+                    <div class="row">
+                      <div class="col-md-3 custom-col columnas-centradas-2"  style="background-color: rgb(242, 246, 240); font-weight: bold; padding: 10px;" ></div>
+                      <div class="col-md-8 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >SEXO</div>
+                      <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(242, 246, 240); font-weight: bold; padding: 10px;" ></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-3 custom-col columnas-centradas-2"  style="background-color: rgb(242, 246, 240); font-weight: bold; padding: 10px;" ></div>
+                      <div class="col-md-4 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >MUJERES</div>
+                      <div class="col-md-4 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >HOMBRES</div>
+                      <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(242, 246, 240); font-weight: bold; padding: 10px;" ></div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >No.</div>
+                      <div class="col-md-2 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >TUTOR</div>
+                      <div class="col-md-2 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >PRIMERO</div>
+                      <div class="col-md-2 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >DISTINTO A PRIMERO</div>
+                      <div class="col-md-2 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >PRIMERO</div>
+                      <div class="col-md-2 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >DISTINTO A PRIMERO</div>
+                      <div class="col-md-1 custom-col columnas-centradas-2"  style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >TOTAL</div>
+                    </div>
+                    <!-- Fila de datos -->
+                    <div class="row" *ngFor="let reporte_por_sexo_1 of dataReporte.distribucion_por_sexo_1">
+                      <div class="col-md-1 custom-col columnas-centradas-2 " >{{reporte_por_sexo_1.numero_checador}}</div>
+                      <div class="col-md-2 custom-col columnas-centradas-2 " >{{reporte_por_sexo_1.nombre_tutor}}</div>
+                      <div class="col-md-2 custom-col columnas-centradas-2 " >{{reporte_por_sexo_1.mujeres_primero}}</div>
+                      <div class="col-md-2 custom-col columnas-centradas-2 ">{{reporte_por_sexo_1.mujeres_distprimero}}</div>
+                      <div class="col-md-2 custom-col columnas-centradas-2 ">{{reporte_por_sexo_1.hombres_primero}}</div>
+                      <div class="col-md-2 custom-col columnas-centradas-2 ">{{reporte_por_sexo_1.hombres_distprimero}}</div>
+                      <div class="col-md-1 custom-col columnas-centradas-2 ">{{reporte_por_sexo_1.total}}</div>
+
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-3 custom-col columnas-centradas-2 " style="background-color: rgb(146, 228, 98); font-weight: bold; padding: 10px;" >TOTAL</div>
+                      <div class="col-md-2 custom-col columnas-centradas-2 " >{{this.dataReporte.distribucion_por_sexo_1_total.mujeres_primero_total}}</div>
+                      <div class="col-md-2 custom-col columnas-centradas-2 ">{{this.dataReporte.distribucion_por_sexo_1_total.mujeres_distprimero_total}}</div>
+                      <div class="col-md-2 custom-col columnas-centradas-2 ">{{this.dataReporte.distribucion_por_sexo_1_total.hombres_primero_total}}</div>
+                      <div class="col-md-2 custom-col columnas-centradas-2 ">{{this.dataReporte.distribucion_por_sexo_1_total.hombres_distprimero_total}}</div>
+                      <div class="col-md-1 custom-col columnas-centradas-2 ">{{this.dataReporte.distribucion_por_sexo_1_total.total}}</div>
+                    </div>
+                </div>
+       </div>
+
+
+       <div class="contenedor-graficas-semestrales">
+                <div class="row">
+                  <div class="col">
+                    <canvas id="grafica" width="500" height="300">
+                      {{ chart }}
+                    </canvas>
+                  </div>
+                  <div class="col">
+                    <canvas id="grafica2" width="500" height="300">
+                      {{ chart2 }}
+                    </canvas>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col">
+                    <canvas id="grafica3" width="500" height="300">
+                      {{ chart3 }}
+                    </canvas>
+                  </div>
+                  <div class="col">
+                    <canvas id="grafica4" width="500" height="300">
+                      {{ chart4 }}
+                    </canvas>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <canvas id="grafica5" width="400" height="200">
+                      {{ chart5 }}
+                    </canvas>
+                  </div>
+                  <!-- <div class="col">
+                    <canvas id="grafica4" width="500" height="300">
+                      {{chart4}}
+                    </canvas>
+                  </div> -->
+                </div>
+        </div>
+
+
+
+
+        </div>
+
+
+      <!-- ================================================================================ -->
+      <!-- ================================================================================ -->
+      <!-- <div class="contenedor-botones">
+        <button class="btn btn-ediles" (click)="cargarGeneracion()">AGREGAR GENERACION</button>
+
+      </div> -->
+    </form>
+  </div>
+</div>

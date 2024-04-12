@@ -1,0 +1,62 @@
+<div class="contenedor-principal ">
+  <div class="contenedor-card animate__animated animate__backInDown  animate__delay-1s efecto-hover">
+      <div class="card card-principal">
+        <div class="contenedor-titulo">
+          <h2 style="color: rgba(176, 60, 60, 0.944); font-weight: bold;">PROGRAMA DE TUTORIAS</h2>
+        </div>
+        <div class="">
+          <img alt="Card"
+            src="../../../assets/img/correcaminos_sinfondo.png" class="img-login" />
+        </div>
+
+        <div class="container-inputs">
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+            <div class="contenido-formulario">
+              <div class="contenedor-input">
+
+                <div class="form-floating">
+                  <input
+                    type="text"
+                    class="form-control custom-input"
+                    id="floatingInput2"
+                    placeholder="Ej. 58584534"
+                    formControlName="user"
+                    (keypress)="capturarEnter($event)"
+
+
+
+                  />
+                  <label for="floatingInput2">Ingresa tu usuario:</label>
+                </div>
+
+              </div>
+              <div class="contenedor-input">
+                <div class="form-floating">
+                  <input
+                    type="password"
+                    class="form-control custom-input"
+                    id="floatingInput2"
+                    placeholder="Ej. 58584534"
+                    formControlName="password"
+                    (keypress)="capturarEnter($event)"
+                  />
+                  <label for="floatingInput2">Ingresa tu password:</label>
+                </div>
+              </div>
+              <!-- <div class="contenedor-input btn-formulario">
+                <button mat-stroked-button color="primary">Acceder</button>
+                <b href="" class="a-password"  (click)="recuperarPassword()" >¿Olvidaste tu contraseña?</b>
+              </div> -->
+            </div>
+
+          </form>
+        </div>
+        <div class="">
+          <p-button label="Ingresar"  icon="pi pi-check" (click)="login()" ></p-button>
+        </div>
+
+      </div>
+
+  </div>
+</div>

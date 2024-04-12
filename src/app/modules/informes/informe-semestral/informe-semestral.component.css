@@ -1,0 +1,106 @@
+
+.mat-dialog-container {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
+.contenedor-principal{
+  position: fixed !important;
+  width: 50% !important;
+  /* height: 100% !important; */
+  /* width: 1000px !important;
+  height: 700px !important; */
+  background-color: white !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+
+
+}
+
+.contenido-modal{
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+   /* width: 700px !important;
+  height: 100% !important; */
+}
+.container {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  /* margin-top: 50px; */
+}
+.form-group {
+  margin-bottom: 20px;
+}
+label {
+  font-weight: bold;
+}
+select.form-control {
+  border: 2px solid #3498db;
+  border-radius: 5px;
+}
+button.btn-primary {
+  background-color: #3498db;
+  border: none;
+  border-radius: 5px;
+}
+button.btn-primary:hover {
+  background-color: #2980b9;
+}
+
+.contenedores-pares{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+}
+.item-contenedor-par{
+  width: 40%;
+  margin: 10px;
+}
+.btn-ediles{
+  width: 250px;
+  background-color: rgba(176, 60, 60, 0.944);
+  color: white;
+  font-weight: bold;
+  border-radius: 18px;
+  font-size: 17px;
+  margin-left: 10px;
+}
+.btn-ediles:hover{
+  background-color: rgb(168, 72, 72);
+}
+.contenedor-individual-titulo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* width: 100%; */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.container-titulo-modal{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  background-color: rgba(176, 60, 60, 0.944);
+  z-index: 9999;
+
+}
+.container-titulo-modal h1{
+  text-align: center;
+  font-weight: bold;
+  color: #ffffff;
+  margin: 0;
+  padding: 20px;
+}

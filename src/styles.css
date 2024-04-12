@@ -1,0 +1,101 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Cambia el color del mat-progress-spinner a rojo */
+.custom-progress-spinner .mat-progress-spinner-primary circle {
+  stroke: rgb(128, 0, 0) !important;
+  color: rgb(128, 0, 0) !important;
+}
+
+/* Cambia el color del mat-progress-spinner */
+.mat-progress-spinner-circle.mat-primary .mat-progress-circle-primary .mat-progress-circle-wrapper {
+  stroke: rgb(128, 0, 0) !important;
+  color: rgb(128, 0, 0) !important;
+}
+.mat-mdc-progress-spinner .mdc-circular-progress__determinate-circle, .mat-mdc-progress-spinner .mdc-circular-progress__indeterminate-circle-graphic{
+  stroke: rgb(128, 0, 0) !important;
+  color: rgb(128, 0, 0) !important;
+}
+
+.custom-input{
+  border-color: rgba(255, 136, 0, 0.493) !important;
+
+
+}
+/* Cuando demos click se activa el estilo del shadow box */
+.custom-input:focus{
+  box-shadow: 0 0 0 0.1rem rgba(255, 136, 0, 0.493) !important; /* Cambia el color aquí */
+}
+.efecto-hover{
+  transition: all 300ms;
+
+}
+.efecto-hover:hover{
+  transform: scale(1.07);
+}
+.contenedor-sidenav {
+
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255) !important;
+}
+.loading-class {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: rgb(128, 0, 0) !important;
+  z-index: 9999;
+}
+.loading-class-item {
+  width: 20%;
+  height: 20%;
+  position: fixed;
+  top: 40%;
+  left: 48%;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  color: rgb(128, 0, 0) !important;
+
+}
+.contenedor-principal{
+  width: 100%;
+  background-color: rgb(255, 255, 255) !important;
+}
+
+
+
+
+.custom-select-style {
+  box-shadow: 1px 3px 29px 0px rgba(176, 60, 60, 0.39) !important;
+  -webkit-box-shadow: 1px 3px 29px 0px rgba(80, 14, 14, 0.281) !important;
+  -moz-box-shadow: 1px 3px 29px 0px rgba(66, 8, 8, 0.548) !important;
+}
+
+.custom-select-style{
+  box-shadow: 0 0 0 0.1rem rgba(199, 63, 63, 0.185) !important; /* Cambia el color aquí */
+}
+.custom-select-style{
+  border-color: rgba(199, 63, 63, 0.137) !important;
+}
+.efecto-hover-2:hover{
+  transform: scale(1.07);
+  cursor: pointer;
+}
+.efecto-hover-2{
+  transition: all 300ms;
+}

@@ -1,0 +1,132 @@
+
+<div class="contenedor-principal">
+  <div class="formulario-comisiones">
+    <form
+      [formGroup]="formulario"
+      class="contenedor-form"
+    >
+
+
+      <div class="contenedores-form contenedor-inputs">
+        <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+          <select
+            class="form-select"
+            id="floatingSelect12"
+            (change)="GeneracionSeleccionado($event)"
+
+          >
+            <option selected>SELECCIONA UNA GENERACION</option>
+            <option
+              *ngFor="let generaciones of generaciones; let i = index"
+              value="{{generaciones.id }}"
+
+
+            >
+             {{generaciones.nombre }}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA UNA GENERACION</label>
+        </div>
+        <br>
+        <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+          <select
+            class="form-select"
+            id="floatingSelect12"
+            (change)="periodoSeleccionada($event)"
+          >
+          <option selected>SELECCIONA UN PERIODO</option>
+
+            <option
+              *ngFor="let periodo of periodo; let i = index"
+              value="{{periodo.nombre}}"
+            >
+            {{periodo.nombre | uppercase}}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA UN PERIODO</label>
+        </div>
+        <br>
+        <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+          <select
+            class="form-select"
+            id="floatingSelect12"
+            (change)="informeSeleccionado($event)"
+          >
+          <option selected>SELECCIONA INFORME</option>
+
+            <option
+              *ngFor="let informe of informes; let i = index"
+              value="{{informe.valor}}"
+            >
+            {{informe.nombre | uppercase}}
+            </option>
+          </select>
+          <label for="floatingSelect12">SELECCIONA INFORME</label>
+        </div>
+        <br>
+        <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
+         <button class="btn btn-primary" (click)="obtenerAlumnos()">
+          OBTENER ALUMNOS
+         </button>
+
+        </div>
+
+      </div>
+
+      <div class="container-tutorados" *ngIf="mostrarPeriodos">
+        <div class="row mt-3" style="    height: 500px !important;">
+          <!-- Iterar a través de las asignaciones y mostrar docentes con alumnos -->
+          <div class="col-md-12 mt-3" style="height: 100% !important;">
+            <div class="card" style="    height: 100% !important;
+            overflow-y: scroll;">
+              <div class="card-header" style="font-weight: bold; ">
+                <li style="display: flex; justify-content: center; align-items: center; flex-direction: row;">
+                  <div class="nombre-tutorado" style="width: 40%;">
+                    NOMBRE COMPLETO
+                  </div>
+                  <div class="numero-control"  style="width: 20%;">
+                     NUMERO DE CONTROL
+                  </div>
+                  <div class="acciones-tutorado" style="width: 20%; text-align: center;">
+                    FECHA DE CAPTURA
+                  </div>
+                  <div class="acciones-tutorado" style="width: 20%; text-align: center;">
+                    ACCIONES
+                  </div>
+                </li>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li *ngFor="let alumno of lista_alumnos" class="list-group-item" style="display: flex; justify-content: center; align-items: center; flex-direction: row;">
+                  <div class="nombre-tutorado" style="width: 40%;">
+                    {{alumno.NombreAlumno}} {{alumno.ApellidoPaternoAlumno}} {{alumno.ApellidoMaternoAlumno}}
+                  </div>
+                  <div class="numero-control"  style="width: 20%;">
+                     {{alumno.NumeroControlAlumno}}
+                  </div>
+                  <div class="acciones-tutorado" style="width: 20%; text-align: center;">
+                   {{fecha_inicio |date:'dd/MM/yyyy'}} - {{fecha_fin |date:'dd/MM/yyyy'}}
+
+                  </div>
+                  <div class="acciones-tutorado" style="width: 20%; text-align: center;">
+                    <button class="btn btn-warning"  [ngClass]="  " *ngIf="alumno.ESTATUS_INFORME !== 0 && data.ESTATUS === 0">CAPTURADO</button>
+                    <button class="btn btn-success" (click)="this.openDialog(alumno);" *ngIf="alumno.ESTATUS_INFORME === 0 && data.ESTATUS === 0">CAPTURAR</button>
+                    <button class="btn btn-primary" (click)="this.openDialog(alumno);" *ngIf="data.ESTATUS === 1">INFORME SEMESTRAL</button>
+
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================================================================================ -->
+      <!-- ================================================================================ -->
+      <!-- <div class="contenedor-botones">
+        <button class="btn btn-ediles" (click)="cargarGeneracion()">AGREGAR GENERACION</button>
+
+      </div> -->
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,41 @@
+<div class="formulario-container">
+  <form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" formControlName="titulo" />
+
+    <label for="contenido">Contenido:</label>
+    <textarea id="contenido" formControlName="contenido"></textarea>
+
+    <!-- <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" formControlName="fecha" />
+
+    <div class="image-upload">
+      <label for="imagen_1">Imagen 1:</label>
+      <input type="file" id="imagen_1" formControlName="imagen_1" accept="image/*" />
+    </div> -->
+  <!--
+    <div class="image-upload">
+      <label for="imagen_2">Imagen 2:</label>
+      <input type="file" id="imagen_2" formControlName="imagen_2" accept="image/*" />
+    </div>
+
+    <div class="image-upload">
+      <label for="imagen_3">Imagen 3:</label>
+      <input type="file" id="imagen_3" formControlName="imagen_3" accept="image/*" />
+    </div> -->
+
+    <label for="url_1">URL 1:</label>
+    <input type="url" id="url_1" formControlName="url_1" />
+  <!--
+    <label for="url_2">URL 2:</label>
+    <input type="url" id="url_2" formControlName="url_2" />
+
+    <label for="url_3">URL 3:</label>
+    <input type="url" id="url_3" formControlName="url_3" /> -->
+
+    <!-- <label for="mostrar">Mostrar:</label>
+    <input type="checkbox" id="mostrar" formControlName="mostrar" /> -->
+
+    <button type="submit" style="background-color: rgba(176, 60, 60, 0.944); color: white;">Guardar</button>
+  </form>
+</div>
