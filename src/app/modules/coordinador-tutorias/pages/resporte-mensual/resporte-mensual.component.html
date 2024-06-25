@@ -8,7 +8,7 @@
             id="floatingSelect12"
             (change)="GeneracionSeleccionado($event)"
           >
-            <option selected>SELECCIONA UNA GENERACION</option>
+            <option selected>GENERACION</option>
             <option
               *ngFor="let generaciones of generaciones; let i = index"
               value="{{ generaciones.id }}"
@@ -16,7 +16,7 @@
               {{ generaciones.nombre }}
             </option>
           </select>
-          <label for="floatingSelect12">SELECCIONA UNA GENERACION</label>
+          <label for="floatingSelect12">GENERACION</label>
         </div>
         <br />
 
@@ -44,7 +44,7 @@
             id="floatingSelect12"
             (change)="periodoSeleccionada($event)"
           >
-            <option selected>SELECCIONA PERIODO</option>
+            <option selected>SEMESTRE</option>
 
             <option
               *ngFor="let periodo of periodo; let i = index"
@@ -53,7 +53,7 @@
               {{ periodo.nombre | uppercase }}
             </option>
           </select>
-          <label for="floatingSelect12">SELECCIONA PERIODO</label>
+          <label for="floatingSelect12">SEMESTRE</label>
         </div>
         <br />
         <div class="form-floating" style="margin: 0px 10px 20px 10px">
@@ -62,7 +62,7 @@
             id="floatingSelect12"
             (change)="informeSeleccionado($event)"
           >
-            <option selected>SELECCIONA INFORME</option>
+            <option selected>INFORME</option>
 
             <option
               *ngFor="let informe of informes; let i = index"
@@ -71,7 +71,7 @@
               {{ informe.nombre | uppercase }}
             </option>
           </select>
-          <label for="floatingSelect12">SELECCIONA INFORME</label>
+          <label for="floatingSelect12">INFORME</label>
         </div>
         <br />
         <div class="form-floating" style="margin: 0px 10px 20px 10px">
@@ -81,7 +81,7 @@
             *ngIf="!mostrarPeriodos"
             style="padding: 10px"
           >
-            GENERAR REPORTES
+            REPORTES
           </button>
           <button
             class="btn btn-danger"

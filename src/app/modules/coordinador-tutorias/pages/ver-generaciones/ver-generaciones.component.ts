@@ -95,21 +95,6 @@ export class VerGeneracionesComponent {
     this.formulario.controls.generacion.setValue(ID_GENERACION);
 
     this.carreraSeleccionada({target:{value: this.IdcarreraUsuario}});
-
-    // const selectedOption = this.generaciones.find(
-    //   (generacion: { id: number }) => generacion.id === parseInt(ID_GENERACION)
-    // );
-    // console.log('Opcion seleccionada: ', selectedOption);
-    // this.NombregeneracionSeleccionado = selectedOption
-    //   ? selectedOption.nombre
-    //   : '';
-    // this.nombreGeneracion = this.NombregeneracionSeleccionado;
-    // this.api
-    //   .obtenerPeriodosFechasGeneracion({ id_generacion: ID_GENERACION })
-    //   .subscribe((res: any) => {
-    //     console.log(res);
-    //     this.fechas_sesion_periodo = res;
-    //   });
   }
 
   NombreperiodoSeleccionado: string = '';
@@ -227,51 +212,6 @@ export class VerGeneracionesComponent {
 
       });
 
-    // const selectedOption = this.fechas_sesion_periodo.find(
-    //   (emp: { id: number }) => emp.id === parseInt(periodo_id)
-    // );
-    // console.log('Opcion seleccionada: ', selectedOption);
-    // this.NombregeneracionSeleccionado = selectedOption
-    //   ? selectedOption.id_generacion
-    //   : '';
-    // this.NombreperiodoSeleccionado = selectedOption
-    //   ? selectedOption.id_periodo
-    //   : '';
-    // this.formulario.controls.periodo.setValue(this.NombreperiodoSeleccionado);
-
-    // const fechaInicialPrimeraSesion = selectedOption
-    //   ? selectedOption.id_fecha_primera_sesion[0].fecha_inicio
-    //   : '';
-    // const fechaFinalPrimeraSesion = selectedOption
-    //   ? selectedOption.id_fecha_primera_sesion[0].fecha_final
-    //   : '';
-
-    // const fechaInicialSegundaSesion = selectedOption
-    //   ? selectedOption.id_fecha_segunda_sesion[0].fecha_inicio
-    //   : '';
-    // const fechaFinalSegundaSesion = selectedOption
-    //   ? selectedOption.id_fecha_segunda_sesion[0].fecha_inicio
-    //   : '';
-
-    // const fechaInicialTerceraSesion = selectedOption
-    //   ? selectedOption.id_fecha_tercera_sesion[0].fecha_inicio
-    //   : '';
-    // const fechaFinalTerceraSesion = selectedOption
-    //   ? selectedOption.id_fecha_tercera_sesion[0].fecha_inicio
-    //   : '';
-    // this.formulario.patchValue({
-    //   fechaInicialPrimeraSesion: fechaInicialPrimeraSesion,
-    //   fechaFinalPrimeraSesion: fechaFinalPrimeraSesion,
-
-    //   fechaInicialSegundaSesion: fechaInicialSegundaSesion,
-    //   fechaFinalSegundaSesion: fechaFinalSegundaSesion,
-
-    //   fechaInicialTerceraSesion: fechaInicialTerceraSesion,
-    //   fechaFinalTerceraSesion: fechaFinalTerceraSesion,
-    // });
-    // this.consultorioFormActualizar.controls.numero.disable()
-    // // this.usuarioFormActualizar.controls.rol.disable()
-    // this.consultorioFormActualizar.setErrors(null);
   }
   archivoSeleccionado(event: any, tipoArchivo: any) {
     const file: File = event.target.files[0];

@@ -8,7 +8,7 @@
             id="floatingSelect12"
             (change)="GeneracionSeleccionado($event)"
           >
-            <option selected>SELECCIONA UNA GENERACION</option>
+            <option selected>GENERACION</option>
             <option
               *ngFor="let generaciones of generaciones; let i = index"
               value="{{ generaciones.id }}"
@@ -16,7 +16,7 @@
               {{ generaciones.nombre }}
             </option>
           </select>
-          <label for="floatingSelect12">SELECCIONA UNA GENERACION</label>
+          <label for="floatingSelect12">GENERACION</label>
         </div>
         <br />
 
@@ -46,7 +46,7 @@
             *ngIf="!mostrarPeriodos"
             style="padding: 15px"
           >
-            VER ASIGNACIONES
+            ASIGNACIONES
           </button>
           <button
             class="btn btn-danger"

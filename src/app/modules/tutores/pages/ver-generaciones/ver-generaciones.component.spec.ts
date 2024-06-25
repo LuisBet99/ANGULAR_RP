@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VerGeneracionesComponent } from './VerGeneracionesComponent';
+import { VerGeneracionesComponent } from './ver-generaciones.component';
 
 describe('VerGeneracionesComponent', () => {
   let component: VerGeneracionesComponent;

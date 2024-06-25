@@ -24,7 +24,7 @@
              {{generaciones.nombre }}
             </option>
           </select>
-          <label for="floatingSelect12">SELECCIONA UNA GENERACION</label>
+          <label for="floatingSelect12">GENERACION</label>
         </div>
         <br>
         <div class="form-floating" style="margin: 0px 10px 20px 10px;" >
@@ -33,7 +33,7 @@
             id="floatingSelect12"
             (change)="periodoSeleccionado($event)"
           >
-          <option selected>SELECCIONA UN PERIODO</option>
+          <option selected>SELECCIONA UN SEMESTRE</option>
 
             <option
               *ngFor="let periodo of fechas_sesion_periodo; let i = index"
@@ -42,7 +42,7 @@
              PERIODO {{periodo.id_periodo }}
             </option>
           </select>
-          <label for="floatingSelect12">SELECCIONA UN PERIODO</label>
+          <label for="floatingSelect12">SEMESTRE</label>
         </div>
         <br>
       </div>

@@ -8,7 +8,7 @@
             id="floatingSelect12"
             (change)="GeneracionSeleccionado($event)"
           >
-            <option selected>SELECCIONA UNA GENERACION</option>
+            <option selected>GENERACION</option>
             <option
               *ngFor="let generaciones of generaciones; let i = index"
               value="{{ generaciones.id }}"
@@ -25,7 +25,7 @@
             id="floatingSelect12"
             (change)="periodoSeleccionada($event)"
           >
-            <option selected>SELECCIONA UN PERIODO</option>
+            <option selected>SEMESTRE</option>
 
             <option
               *ngFor="let periodo of periodo; let i = index"
@@ -34,7 +34,7 @@
               {{ periodo.nombre | uppercase }}
             </option>
           </select>
-          <label for="floatingSelect12">SELECCIONA UN PERIODO</label>
+          <label for="floatingSelect12">SELECCIONA UN SEMESTRE</label>
         </div>
         <br />
         <div class="form-floating" style="margin: 0px 10px 20px 10px">
@@ -43,7 +43,7 @@
             id="floatingSelect12"
             (change)="informeSeleccionado($event)"
           >
-            <option selected>SELECCIONA CARRERA</option>
+            <option selected>CARRERA</option>
 
             <option
               *ngFor="let carrera of listaCarreras; let i = index"

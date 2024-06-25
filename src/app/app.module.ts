@@ -8,26 +8,32 @@ import { AuthModule } from './modules/auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { ProfesorespruebaModule } from './modules/profesoresprueba/profesoresprueba.module';
-import { ChangePasswordComponent } from './change-password/change-password.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
+import { FormsModule } from '@angular/forms';
+import { AuthService } from './services/auth.service';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ChangePasswordComponent,
+    UpdatePasswordComponent,
 
 
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     PrimengModule,
     AuthModule,
     BrowserAnimationsModule,
     DashboardModule,
     HttpClientModule,
-    ProfesorespruebaModule
+    ProfesorespruebaModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
