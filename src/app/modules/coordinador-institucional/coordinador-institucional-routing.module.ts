@@ -10,6 +10,7 @@ import { CargarTutoresComponent } from './pages/cargar-tutores/cargar-tutores.co
 import { CargarDocentesComponent } from './pages/cargar-docentes/cargar-docentes.component';
 import { ReporteSemestralComponent } from './pages/reporte-semestral/reporte-semestral.component';
 import { AvisosComponent } from './pages/avisos/avisos.component';
+import { ReporteParcialComponent } from './pages/reporte-parcial/reporte-parcial.component';
 
 const routes: Routes = [
   {
@@ -55,6 +56,10 @@ const routes: Routes = [
       {
         path: 'reporte-semestral',
         component: ReporteSemestralComponent
+      },
+      {
+        path: 'reporte-parcial',
+        component: ReporteParcialComponent
       },
       {
         path: 'ver-avisos',

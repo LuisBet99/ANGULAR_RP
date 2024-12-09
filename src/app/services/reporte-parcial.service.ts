@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class ApiService {
+export class ReporteParcialService {
   constructor(public http: HttpClient) {}
 
   dominio: string = 'http://127.0.0.1:8000/api/';
@@ -387,115 +387,14 @@ export class ApiService {
     return this.http.post(url, data,httpOptions);
   }
 
-  tipos_modalidad(){
-    let httpOptions = {
-      headers: new HttpHeaders({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Content-Type': 'application/json',
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Access-Control-Allow-Origin': '*',
-      }),
-    }
-    let url: string = `${this.dominio}Tutor/tipos_modalidad`
-    return this.http.get(url, httpOptions);
-  }
-  tipos_canalizacion(){
-    let httpOptions = {
-      headers: new HttpHeaders({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Content-Type': 'application/json',
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Access-Control-Allow-Origin': '*',
-      }),
-    }
-    let url: string = `${this.dominio}Tutor/tipos_canalizacion`
-    return this.http.get(url, httpOptions);
-  }
-  tipos_situacion(){
-    let httpOptions = {
-      headers: new HttpHeaders({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Content-Type': 'application/json',
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Access-Control-Allow-Origin': '*',
-      }),
-    }
-    let url: string = `${this.dominio}Tutor/tipos_situacion`
-    return this.http.get(url, httpOptions);
-  }
-  tipos_logros(){
-    let httpOptions = {
-      headers: new HttpHeaders({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Content-Type': 'application/json',
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Access-Control-Allow-Origin': '*',
-      }),
-    }
-    let url: string = `${this.dominio}Tutor/tipos_logros`
-    return this.http.get(url, httpOptions);
-  }
-  tipos_canalizacion_becas(){
-    let httpOptions = {
-      headers: new HttpHeaders({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Content-Type': 'application/json',
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Access-Control-Allow-Origin': '*',
-      }),
-    }
-    let url: string = `${this.dominio}Tutor/tipos_canalizacion_becas`
-    return this.http.get(url, httpOptions);
-  }
-  tipos_actividad(){
-    let httpOptions = {
-      headers: new HttpHeaders({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Content-Type': 'application/json',
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Access-Control-Allow-Origin': '*',
-      }),
-    }
-    let url: string = `${this.dominio}Tutor/tipos_actividad`
-    return this.http.get(url, httpOptions);
-  }
-
-  tipos_beca(){
-    let httpOptions = {
-      headers: new HttpHeaders({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Content-Type': 'application/json',
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Access-Control-Allow-Origin': '*',
-      }),
-    }
-    let url: string = `${this.dominio}Tutor/tipos_beca`
-    return this.http.get(url, httpOptions);
-  }
 
 
-  geneRepMensCoordTut(data:any){
-    let httpOptions = {
-      headers: new HttpHeaders({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Content-Type': 'application/json',
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Access-Control-Allow-Origin': '*',
-      }),
-    };
-    let url: string = `${this.dominio}coordinadorTutorias/geneRepMensCoordTut`;
-    return this.http.post(url, data ,httpOptions);
-  }
-  verAsignaciones(data:any){
-    let httpOptions = {
-      headers: new HttpHeaders({
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Content-Type': 'application/json',
-        // eslint-disable-next-line @typescript-eslint/naming-convention
-        'Access-Control-Allow-Origin': '*',
-      }),
-    };
-    let url: string = `${this.dominio}coordinadorTutorias/verAsignaciones`;
-    return this.http.post(url, data ,httpOptions);
-  }
 }
+  
+  
+  
+  
+
+  
+
+  

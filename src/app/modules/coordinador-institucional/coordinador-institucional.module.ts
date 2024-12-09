@@ -14,6 +14,7 @@ import { CargarCarrerasComponent } from './pages/cargar-carreras/cargar-carreras
 import { CargarDocentesComponent } from './pages/cargar-docentes/cargar-docentes.component';
 import { ReporteSemestralComponent } from './pages/reporte-semestral/reporte-semestral.component';
 import { AvisosComponent } from './pages/avisos/avisos.component';
+import { ReporteParcialComponent } from './pages/reporte-parcial/reporte-parcial.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AvisosComponent } from './pages/avisos/avisos.component';
     CargarCarrerasComponent,
     CargarDocentesComponent,
     ReporteSemestralComponent,
-    AvisosComponent
+    AvisosComponent,
+    ReporteParcialComponent
   ],
   imports: [
     CommonModule,

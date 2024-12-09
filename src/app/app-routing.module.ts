@@ -35,7 +35,7 @@ const routes: Routes = [
   {
     path: 'coordinador-institucional',
     loadChildren: () => import('./modules/coordinador-institucional/coordinador-institucional.module').then((m) => m.CoordinadorInstitucionalModule),
-    canActivate: [coordinadorInstGuard]
+    //canActivate: [coordinadorInstGuard]
   },
   {
     path: 'profesoresprueba',
